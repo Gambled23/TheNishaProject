@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/loginexamples', function () {
+    return view('logins');
+});
+
+// Google Login
+Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
+
+//Middleware login
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
