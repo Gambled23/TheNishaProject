@@ -8,8 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/loginexamples', function () {
-    return view('logins');
+Route::get('/tests', function () {
+    return view('tests');
 });
 
 // Google Login
