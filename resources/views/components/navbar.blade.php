@@ -31,10 +31,13 @@
 
             </div>
 
-            <!-- Iconos derecha -->
-            <div class="flex items-center">
-                <a href="">log out</a>
-                <a href="">carrito svg</a>
+            <!-- Iconos derecha (soy incapaz de hacer este puto logo más pequeño)-->
+            
+            <div class="">
+                <a href="{{ route('dashboard') }}">
+                        <x-carrito-logo class="block h-9 w-auto" />
+                </a>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;</p>
             </div>
         </div>
     </div>
