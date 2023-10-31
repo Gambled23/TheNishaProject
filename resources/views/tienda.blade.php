@@ -1,9 +1,7 @@
 @extends ('layouts.main')
 @section('body')
-@vite('resources/css/app.css')
+<x-search-bar class="w-4"/>
 
-<x-navbar />
-<x-search-bar />
 <h1 class="text-2xl font-medium text-gray-900 my-3 mx-6" inline>Todos los productos</h1>
 
 @foreach ($products as $product)

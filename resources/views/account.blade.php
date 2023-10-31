@@ -1,4 +1,4 @@
-@extends ('layouts.main-no-search')
+@extends ('layouts.main')
 @section('body')
 
 @endsection
