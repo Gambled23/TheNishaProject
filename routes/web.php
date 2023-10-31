@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 
 
-Route::get('', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');;
 
 Route::get('/tienda', function () {
     $products = Product::all();
     return view('tienda', ['products' => $products]);
-})->name('tienda');;
+})->name('tienda');
 
 Route::get('/checkout', function () {
     return view('checkout');
@@ -31,9 +31,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/account', function () {
+        return view('account');
+    })->name('account');
 });
 
 //Paypal
