@@ -17,13 +17,13 @@
                     <x-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                         {{ __('Tienda') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('productos.index')">
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('productos.index')">
                         {{ __('Categorías') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Contacto') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('About Nisha') }}
                     </x-nav-link>
                 </div>
@@ -31,13 +31,16 @@
 
             </div>
 
-            <!-- Iconos derecha (soy incapaz de hacer este puto logo más pequeño)-->
+            <!--Iconos derecha-->
             
-            <div class="">
-                <a href="{{ route('dashboard') }}">
-                        <x-carrito-logo class="block h-9 w-auto" />
+            <div class="flex align-center items-center">
+                <a href="{{ route('account') }}">
+                    <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 </a>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;</p>
+                <a href="{{ route('checkout') }}">
+                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
+                    
+                </a>
             </div>
         </div>
     </div>

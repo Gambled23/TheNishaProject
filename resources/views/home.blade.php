@@ -1,9 +1,7 @@
-@vite('resources/css/app.css')
+@extends ('layouts.main')
+@section('body')
 
-<x-navbar />
-<x-search-bar />
-
-<h1 class="text-2xl font-medium text-gray-900 my-3 mx-6" inline>The Nisha proyect!</h1>
+<h1 class="text-2xl font-medium text-gray-900 my-2" inline>The Nisha proyect!</h1>
 
 <div class="grid grid-rows-3 gap-4 items-center ">
     <div class="grid grid-cols-2 gap-4">
@@ -28,3 +26,5 @@
         </div>
     </div>
 </div>
+
+@endsection
