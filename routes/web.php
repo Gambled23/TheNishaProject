@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('home');
 })->name('home');;
 
@@ -13,6 +13,9 @@ Route::get('/tienda', function () {
     return view('tienda', ['products' => $products]);
 })->name('tienda');;
 
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');
 
 Route::get('/tests', function () {
     return view('tests');

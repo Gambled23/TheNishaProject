@@ -10,7 +10,9 @@
 bg-slate-50
 relative">
     <x-navbar/>
-    <x-search-bar class="w-4" />
-
-    @yield('body')
+    <x-search-bar class="w-4"/>
+    <!-- Main card-->
+    <div class="mx-64 my-8 rounded-xl shadow-md ">
+        @yield('body')
+    </div>
 </body>

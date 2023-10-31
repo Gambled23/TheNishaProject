@@ -37,7 +37,7 @@
                 <a href="/">
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 </a>
-                <a href="/">
+                <a href="{{ route('checkout') }}">
                     <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
                 </a>
             </div>
