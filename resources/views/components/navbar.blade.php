@@ -2,13 +2,12 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}">
                         <x-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>
+                </a>
+
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -28,6 +27,14 @@
                         {{ __('About Nisha') }}
                     </x-nav-link>
                 </div>
+
+
+            </div>
+
+            <!-- Iconos derecha -->
+            <div class="flex items-center">
+                <a href="">log out</a>
+                <a href="">carrito svg</a>
             </div>
         </div>
     </div>
