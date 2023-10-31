@@ -8,7 +8,7 @@
         <tbody>
             <tr class="bg-white border-b">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                <i class="fa-solid fa-paw fa-xl pr-10" style="color: #000000;"></i>
+                <i class="fa-solid fa-paw fa-xl pr-10" style="color: #3730a3;"></i>
                     Nombre de la cuenta:
                 </th>
                 <td class="px-6 py-4">
@@ -17,7 +17,7 @@
             </tr>
             <tr class="border-b bg-gray-50 ">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <i class="fa-solid fa-paw fa-xl pr-10" style="color: #000000;"></i>
+                    <i class="fa-solid fa-paw fa-xl pr-10" style="color: #312e81;"></i>
                     Correo electrónico:
                     <td class="px-6 py-4">
                         {{ Auth::user()->email }}
@@ -26,12 +26,21 @@
             </tr>
             <tr class="bg-white border-b ">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    <i class="fa-solid fa-paw fa-xl pr-10" style="color: #000000;"></i>
+                    <i class="fa-solid fa-paw fa-xl pr-10" style="color: #3730a3;"></i>
                     Datos de facturación:
                 </th>
                 <td class="px-6 py-4">
                     placeholder
                 </td>
+            </tr>
+            <tr class="border-b bg-gray-50 ">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    <i class="fa-solid fa-paw fa-xl pr-10" style="color: #312e81;"></i>
+                    placeholder:
+                    <td class="px-6 py-4">
+                        placeholder
+                    </td>
+                </th>
             </tr>
         </tbody>
     </table>
