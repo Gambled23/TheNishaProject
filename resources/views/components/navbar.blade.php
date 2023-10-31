@@ -33,11 +33,13 @@
 
             <!-- Iconos derecha (soy incapaz de hacer este puto logo más pequeño)-->
             
-            <div class="">
-                <a href="{{ route('dashboard') }}">
-                        <x-carrito-logo class="block h-9 w-auto" />
+            <div class="flex align-center items-center">
+                <a href="/">
+                    <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 </a>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;</p>
+                <a href="/">
+                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
+                </a>
             </div>
         </div>
     </div>
