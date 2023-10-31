@@ -5,8 +5,14 @@ use App\Http\Controllers\PaymentController;
 
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');;
+
+Route::get('/tienda', function () {
+    $products = Product::all();
+    return view('tienda', ['products' => $products]);
+})->name('tienda');;
+
 
 Route::get('/tests', function () {
     return view('tests');
@@ -35,8 +41,4 @@ Route::controller(PaymentController::class)
         Route::get('handle-payment', 'handlePayment')->name('make.payment');
         Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
         Route::get('payment-success', 'paymentSuccess')->name('success.payment');
-    });
-
-Route::get('/tests', function () {
-        return view('tests');
     });

@@ -3,7 +3,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<x-navbar></x-navbar>
+<x-navbar/>
+<x-search-bar class="w-4" />
 
 <h1>OLA DANOS TU DINERO POR FAVOR</h1>
 <form action="{{ route('make.payment') }}">
