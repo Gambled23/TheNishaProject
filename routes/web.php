@@ -36,3 +36,7 @@ Route::controller(PaymentController::class)
         Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
         Route::get('payment-success', 'paymentSuccess')->name('success.payment');
     });
+
+Route::get('/tests', function () {
+        return view('tests');
+    });

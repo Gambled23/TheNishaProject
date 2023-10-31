@@ -3,6 +3,8 @@
     @vite('resources/css/app.css')
 </head>
 
+<x-navbar></x-navbar>
+
 <h1>OLA DANOS TU DINERO POR FAVOR</h1>
 <form action="{{ route('make.payment') }}">
     <button type="submit" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">
