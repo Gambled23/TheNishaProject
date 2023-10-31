@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<head>
-    @vite('resources/css/app.css')
-</head>
-
-<x-navbar/>
-<x-search-bar class="w-4" />
+@extends ('layouts.main')
+@section('body')
 
 <h1>OLA DANOS TU DINERO POR FAVOR</h1>
 <form action="{{ route('make.payment') }}">
@@ -13,3 +8,5 @@
     Check out with PayPal
     </button>
 </form>
+
+@endsection

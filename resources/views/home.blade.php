@@ -1,7 +1,5 @@
-@vite('resources/css/app.css')
-
-<x-navbar />
-<x-search-bar />
+@extends ('layouts.main')
+@section('body')
 
 <h1 class="text-2xl font-medium text-gray-900 my-3 mx-6" inline>The Nisha proyect!</h1>
 
@@ -28,3 +26,5 @@
         </div>
     </div>
 </div>
+
+@endsection
