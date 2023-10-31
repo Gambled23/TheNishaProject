@@ -14,4 +14,5 @@ html {
     scrollbar-width: thin;
     scrollbar-color: var(--color-gray-700) var(--color-gray-800);
     font-family: Poppins, sans-serif;
+    color: #141232;
 }
