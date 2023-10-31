@@ -35,13 +35,18 @@
             
             <div class="flex align-center items-center">
                 <a href="{{ route('account') }}">
-                    <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
+                    @if ( Auth::user() )
+                        {{ Auth::user()->name }}
+                        <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
+                        <a href="{{ route('checkout') }}">
+                            <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
+                        </a>
+                    @else
+                        Iniciar sesión
+                        <i class="fa-solid fa-paw fa-bounce fa-xl pr-10" style="color: #4338ca;"></i>
+                    @endif  
                 </a>
-                <a href="{{ route('checkout') }}">
-                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
-                    
-                </a>
-            </div>
+            </div>      
         </div>
     </div>
 </nav>
