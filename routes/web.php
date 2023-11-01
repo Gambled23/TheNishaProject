@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
-
+use App\Models\producto;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');;
 
 Route::get('/tienda', function () {
-    $products = Product::all();
-    return view('tienda', ['products' => $products]);
+    $productos = producto::all();
+    return view('tienda', ['productos' => $productos]);
 })->name('tienda');
 
 Route::get('/checkout', function () {
