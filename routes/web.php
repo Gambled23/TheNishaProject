@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Models\producto;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
     return view('home');
@@ -15,6 +16,8 @@ Route::get('/tienda', function () {
     $productos = producto::all();
     return view('tienda', ['productos' => $productos]);
 })->name('tienda');
+
+Route::resource('producto', ProductoController::class);
 
 Route::get('/checkout', function () {
     return view('checkout');
