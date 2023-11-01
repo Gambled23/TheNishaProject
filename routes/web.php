@@ -35,7 +35,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/account', function () {
-        return view('account');
+        return view('indexUser');
     })->name('account');
 });
 
