@@ -4,12 +4,10 @@
 
 <h1 class="text-2xl font-medium text-gray-900 my-3 mx-6" inline>Todos los productos</h1>
 
-@foreach ($products as $product)
-    <div>
-        <h2>{{ $product->name }}</h2>
-        <p>{{ $product->description }}</p>
-        <p>{{ $product->price }}</p>
-    </div>
+<div class="grid grid-cols-4 gap-y-6">
+@foreach ($productos as $producto)
+    <x-product-card :producto="$producto" class="w-1/3"/>
 @endforeach
+</div>
 
 @endsection
