@@ -36,7 +36,7 @@ class ProductoController extends Controller
      */
     public function show(producto $producto)
     {
-        //
+        return view('producto/show', ['producto' => $producto]);
     }
 
     /**

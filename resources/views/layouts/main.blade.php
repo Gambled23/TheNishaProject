@@ -11,7 +11,7 @@ bg-slate-50
 relative">
     <x-navbar/>
     <!-- Main card-->
-    <div class="mx-64 my-8 rounded-xl shadow-md ">
+    <div class=" bg-white mx-64 my-8 rounded-xl shadow-md ">
         @yield('body')
     </div>
 </body>
