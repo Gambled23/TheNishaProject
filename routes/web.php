@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Models\producto;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');;
+
+Route::resource('user', UserController::class)->middleware('auth');
 
 Route::get('/tienda', function () {
     $productos = producto::all();

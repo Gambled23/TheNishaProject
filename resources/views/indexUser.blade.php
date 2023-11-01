@@ -53,7 +53,12 @@
             <button class="bg-gray-500 text-white rounded-lg px-6 hover:bg-gray-600 transition ease-in-out delay-50" onclick="">Cerrar sesión</button>
         </form>
     </div>
-    <button class="bg-red-600 text-white rounded-lg px-6 hover:bg-red-700 transition ease-in-out delay-50" onclick="">Eliminar cuenta</button>
+    <?php $user = Auth::user(); ?>
+<form action="{{route('user.destroy', $user)}}" method="POST">
+@csrf
+@method('DELETE')
+<button class="bg-red-600 text-white rounded-lg px-6 hover:bg-red-700 transition ease-in-out delay-50" onclick="" type="submit">Eliminar cuenta</button>
+</form>
     
 </div>
 
