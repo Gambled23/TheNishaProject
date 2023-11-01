@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 
+Route::resource('user', UserController::class)->middleware('auth');
 
 Route::get('/', function () {
     return view('home');
