@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
 use App\Models\producto;
 use App\Http\Controllers\UserController;
@@ -52,3 +53,9 @@ Route::controller(PaymentController::class)
         Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
         Route::get('payment-success', 'paymentSuccess')->name('success.payment');
     });
+
+Route::any('/search',function(){
+    $q = request()->get('q');
+    $productos = Producto::where('nombre','LIKE','%'.$q.'%')->get();
+    return view('search', ['productos' => $productos]);
+});
