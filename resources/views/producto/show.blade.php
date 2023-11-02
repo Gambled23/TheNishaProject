@@ -10,7 +10,7 @@
         <h1 class=" text-4xl font-bold">{{ strtoupper($producto->nombre) }}</h1>
         <h2 class="my-2">${{ $producto->precio }}</h2>
         <p class="my-1">{{ $producto->descripcion }}</p>
-        <div class=" flex aling-center justify-center">
+        <div class="flex justify-center">
             <x-carrito-button/>
         </div>
     </div>
