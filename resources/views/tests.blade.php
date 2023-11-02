@@ -9,4 +9,8 @@
     </button>
 </form>
 
+@foreach ($productos as $producto)
+    <p>{{ $producto->nombre }}</p>
+@endforeach
+
 @endsection

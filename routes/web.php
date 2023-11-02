@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
 use App\Models\producto;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
-    return view('home');
+    $productos = producto::take(2)->get();
+    return view('home', ['productos' => $productos]);
 })->name('home');;
 
 Route::resource('user', UserController::class)->middleware('auth');
@@ -51,3 +53,9 @@ Route::controller(PaymentController::class)
         Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
         Route::get('payment-success', 'paymentSuccess')->name('success.payment');
     });
+
+Route::any('/search',function(){
+    $q = request()->get('q');
+    $productos = Producto::where('nombre','LIKE','%'.$q.'%')->get();
+    return view('search', ['productos' => $productos]);
+});
