@@ -3,8 +3,8 @@
 
 
 <div class="flex"> <!-- Div de parte superior -->
-    <div class="mx-32 my-6 w-4/5"> <!-- Div imagen izquierda -->
-        <img src="{{ $producto->imagen }}" alt="Imagen del producto" width="300" height="300">
+    <div class="mx-32 my-6 w-4/5 "> <!-- Div imagen izquierda -->
+        <x-photo-carrousel :producto="$producto"/>
     </div>
     <div class="px-24 mx-8 py-4 my-4 bg-violet-50 rounded-lg shadow-md"> <!-- Div información derecha -->
         <h1 class=" text-4xl font-bold">{{ strtoupper($producto->nombre) }}</h1>
