@@ -7,7 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
-    return view('home');
+    $productos = producto::take(2)->get();
+    return view('home', ['productos' => $productos]);
 })->name('home');;
 
 Route::resource('user', UserController::class)->middleware('auth');
