@@ -1,7 +1,7 @@
 <a href="{{ route('producto.show', $producto)}}">
 <div class="flex flex-col bg-violet-50 border border-gray-200 rounded-lg shadow-sm overflow-hidden mx-auto max-w-sm">
     <div class="flex-shrink-0">
-        <img class="h-48 w-full object-cover" src="{{ $producto->image_url }}" alt="{{ $producto->nombre }}">
+        <img class="h-48 w-full object-cover" src='{{ URL::to("/assets/{$producto->nombre}0.jpg") }}' alt="{{ $producto->nombre }}">
         
     </div>
     <div class="p-6">
