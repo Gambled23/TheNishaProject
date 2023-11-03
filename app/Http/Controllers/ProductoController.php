@@ -32,9 +32,9 @@ class ProductoController extends Controller
     {
         $request->validate([
             'nombre' => ['required', 'min:2', 'max:100'],
-            'descricpion' => ['required', 'min:5', 'max:500'],
-            'precio' => ['required|numeric'],
-            'disponibles' => ['required|numeric']
+            'descripcion' => ['required', 'min:5', 'max:500'],
+            'precio' => 'required|numeric',
+            'disponibles' => 'required|numeric'
         ]);
 
         Producto::create($request->all());
