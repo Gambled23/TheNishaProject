@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
 use App\Models\Producto;
+use App\Models\Categoria;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
     $productos = Producto::take(2)->get();
@@ -20,6 +22,7 @@ Route::get('/tienda', function () {
 })->name('tienda');
 
 Route::resource('producto', ProductoController::class);
+Route::resource('categoria', CategoriaController::class);
 
 Route::get('/checkout', function () {
     return view('checkout');
