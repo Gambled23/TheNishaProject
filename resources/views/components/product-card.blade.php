@@ -5,7 +5,7 @@
     </div>
     <div class="p-6">
         <h2 class="text-2xl font-semibold text-gray-900">{{ $producto->nombre }}</h2>  
-        <p class="mt-2 text-sm text-gray-500">{{ \Illuminate\Support\Str::limit($producto->descripcion, 40) }}</p>
+        <!--<p class="mt-2 text-sm text-gray-500">{{ \Illuminate\Support\Str::limit($producto->descripcion, 40) }}</p>-->
         <div class="mt-3">
             <span class="text-sm font-semibold text-gray-700">${{ $producto->precio }}</span>
         </div>

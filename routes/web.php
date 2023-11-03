@@ -3,19 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
-use App\Models\producto;
+use App\Models\Producto;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
-    $productos = producto::take(2)->get();
+    $productos = Producto::take(2)->get();
     return view('home', ['productos' => $productos]);
 })->name('home');;
 
 Route::resource('user', UserController::class)->middleware('auth');
 
 Route::get('/tienda', function () {
-    $productos = producto::all();
+    $productos = Producto::all();
     return view('tienda', ['productos' => $productos]);
 })->name('tienda');
 
