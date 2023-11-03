@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -63,11 +63,12 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $validated = $request->validate([
-            'nombre' => ['required', 'min:2', 'max:100', 'unique:productos'],
-            'descricpion' => ['required', 'min:5', 'max:500'],
-            'precio' => ['required|numeric'],
-            'disponibles' => ['required|numeric']
+            'nombre' => ['required', 'min:2', 'max:500'],
+            'descripcion' => ['required', 'min:5', 'max:500'], 
+            'precio' => 'required|numeric', 
+            'disponibles' => 'required|numeric'
         ]);
+
 
         Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
         return redirect()->route('producto.index'); 
