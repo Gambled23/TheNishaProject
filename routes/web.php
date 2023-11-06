@@ -6,6 +6,7 @@ use App\Http\Controllers\PaymentController;
 use App\Models\producto;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\DomPdfController;
 
 Route::get('/', function () {
     $productos = producto::take(2)->get();
@@ -28,6 +29,8 @@ Route::get('/checkout', function () {
 Route::get('/tests', function () {
     return view('tests');
 });
+
+Route::get('/get-pdf', [DomPdfController::class, 'getPdf']);
 
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
