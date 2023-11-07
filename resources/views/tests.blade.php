@@ -1,3 +1,4 @@
+
 @extends ('layouts.main')
 @section('body')
 
@@ -9,8 +10,13 @@
     </button>
 </form>
 
-@foreach ($productos as $producto)
-    <p>{{ $producto->nombre }}</p>
-@endforeach
+
+<h1>上傳文件</h1>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    @csrf
+    <input type="file" name="image" accept=".jpg">
+    <button type="submit">上傳</button>
+</form>
 
 @endsection

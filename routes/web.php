@@ -29,6 +29,16 @@ Route::get('/tests', function () {
     return view('tests');
 });
 
+Route::post('/upload', function (Request $request) {
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        return back()
+            ->with('success', 'Image Uploaded successfully.')
+            ->with('image', $imageName);
+    }
+})->name('upload');
+
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
