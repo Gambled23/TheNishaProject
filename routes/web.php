@@ -31,11 +31,10 @@ Route::get('/tests', function () {
 
 Route::post('/upload', function (Request $request) {
     if ($request->hasFile('image')) {
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
-        return back()
-            ->with('success', 'Image Uploaded successfully.')
-            ->with('image', $imageName);
+        foreach ($request->file('image') as $file) {
+            $imageName = time() . '.' . $file->extension();
+            $file->move(public_path('assets'), $imageName);
+        }
     }
 })->name('upload');
 

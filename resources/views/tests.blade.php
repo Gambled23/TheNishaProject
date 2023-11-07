@@ -15,7 +15,7 @@
 
 <form action="/upload" method="post" enctype="multipart/form-data">
     @csrf
-    <input type="file" name="image" accept=".jpg">
+    <input type="file" name="image[]" accept=".jpg" multiple>
     <button type="submit">上傳</button>
 </form>
 
