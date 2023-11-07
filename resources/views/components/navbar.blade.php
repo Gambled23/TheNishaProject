@@ -35,13 +35,15 @@
             <!--Iconos derecha-->
             
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <!-- <a href="{{ route('account') }}"> -->
+                
                     @if ( Auth::user() )
+                    <a href="{{ route('account') }}">
                         <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                         <a href="{{ route('checkout') }}">
                             <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
                         </a>
                     @else
+                        <a href="{{ route('login') }}">
                         Iniciar sesión
                         <!--<i class="fa-solid fa-paw fa-bounce fa-xl pr-10 block-h-9 w-auto" style="color: #4338ca;"></i>-->
                     @endif  

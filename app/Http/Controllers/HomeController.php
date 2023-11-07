@@ -21,7 +21,7 @@ class HomeController extends Controller
 
         else
         {
-            return view('tienda');
+            return view('home');
         }
     }
 }
