@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('descripcion', 500);
             $table->double('precio');
             $table->integer('disponibles');
+            $table->integer('imagenesTotales')->default(0); 
         });
     }
 

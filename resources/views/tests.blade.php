@@ -16,6 +16,11 @@
 <form action="/upload" method="post" enctype="multipart/form-data">
     @csrf
     <input type="file" name="image[]" accept=".jpg" multiple>
+    <select name="product">
+        @foreach ($제품 as $product)
+            <option value="{{ $product->id }}">{{ $product->nombre }}</option>
+        @endforeach
+    </select>
     <button type="submit">上傳</button>
 </form>
 

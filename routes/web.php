@@ -26,14 +26,19 @@ Route::get('/checkout', function () {
 })->name('checkout');
 
 Route::get('/tests', function () {
-    return view('tests');
+    $제품 = producto::all();
+    return view('tests', ['제품' => $제품]);
 });
 
 Route::post('/upload', function (Request $request) {
     if ($request->hasFile('image')) {
         foreach ($request->file('image') as $file) {
-            $imageName = time() . '.' . $file->extension();
+            $productId = $request->input('product');
+            $producto = Producto::find($productId);
+            $imageName = $producto->nombre.$producto->imagenesTotales.'.' . $file->extension();
             $file->move(public_path('assets'), $imageName);
+            $producto->imagenesTotales = $producto->imagenesTotales + 1;
+            $producto->save();
         }
     }
 })->name('upload');
