@@ -2,12 +2,13 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex items-center">
+            <div class="flex">
                 <!-- Logo -->
-                <a href="/">
-                        <x-application-mark class="block h-9 w-auto" />
-                </a>
-
+                <div class="shrink-0 flex items-center">
+                    <a href="/">
+                            <x-application-mark class="block h-9 w-auto" />
+                    </a>
+                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -27,14 +28,14 @@
                         {{ __('About Nisha') }}
                     </x-nav-link>
                 </div>
-
-
             </div>
+
+            
 
             <!--Iconos derecha-->
             
-            <div class="flex align-center items-center">
-                <a href="{{ route('account') }}">
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <!-- <a href="{{ route('account') }}"> -->
                     @if ( Auth::user() )
                         <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                         <a href="{{ route('checkout') }}">
@@ -42,10 +43,10 @@
                         </a>
                     @else
                         Iniciar sesión
-                        <i class="fa-solid fa-paw fa-bounce fa-xl pr-10" style="color: #4338ca;"></i>
+                        <!--<i class="fa-solid fa-paw fa-bounce fa-xl pr-10 block-h-9 w-auto" style="color: #4338ca;"></i>-->
                     @endif  
                 </a>
-            </div>      
+            </div> 
         </div>
     </div>
 </nav>
