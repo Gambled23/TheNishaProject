@@ -2,10 +2,9 @@
 <div id="custom-controls-gallery" class="relative w-full" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        @for ($i = 0; $i < 5; $i++)
-            <!-- Item {{ $i + 1 }} -->
-            <div class="{{ $i == 1 ? '' : 'hidden' }} duration-700 ease-in-out" data-carousel-item="{{ $i == 1 ? 'active' : '' }}">
-                <img src='{{ URL::to("/assets/{$producto->nombre}{$i}.png") }}' class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{ $producto->nombre }}">
+        @for ($i = 0; $i < $producto->imagenesTotales; $i++)
+            <div class="{{ $i == 0 ? '' : 'hidden' }} duration-700 ease-in-out" data-carousel-item="{{ $i == 0 ? 'active' : '' }}">
+                <img src='{{ URL::to("/assets/{$producto->nombre}{$i}.jpg") }}' class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{ $producto->nombre }}">
             </div>
         @endfor
     </div>

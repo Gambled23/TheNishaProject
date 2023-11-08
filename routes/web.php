@@ -35,8 +35,22 @@ Route::get('/account', function () {
 })->name('account');
 
 Route::get('/tests', function () {
-    return view('tests');
+    $제품 = producto::all();
+    return view('tests', ['제품' => $제품]);
 });
+
+Route::post('/upload', function (Request $request) {
+    if ($request->hasFile('image')) {
+        foreach ($request->file('image') as $file) {
+            $productId = $request->input('product');
+            $producto = Producto::find($productId);
+            $imageName = $producto->nombre.$producto->imagenesTotales.'.' . $file->extension();
+            $file->move(public_path('assets'), $imageName);
+            $producto->imagenesTotales = $producto->imagenesTotales + 1;
+            $producto->save();
+        }
+    }
+})->name('upload');
 
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
