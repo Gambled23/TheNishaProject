@@ -3,27 +3,36 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PaymentController;
-use App\Models\producto;
+use App\Models\Producto;
+use App\Models\Categoria;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
-    $productos = producto::take(2)->get();
+    $productos = Producto::take(2)->get();
     return view('home', ['productos' => $productos]);
-})->name('home');;
+})->name('home');
 
 Route::resource('user', UserController::class)->middleware('auth');
 
 Route::get('/tienda', function () {
-    $productos = producto::all();
+    $productos = Producto::all();
     return view('tienda', ['productos' => $productos]);
 })->name('tienda');
 
 Route::resource('producto', ProductoController::class);
+Route::resource('categoria', CategoriaController::class);
 
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
+
+Route::get('/account', function () {
+    return view('indexUser');
+})->name('account');
 
 Route::get('/tests', function () {
     return view('tests');
@@ -39,10 +48,12 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/account', function () {
-        return view('indexUser');
-    })->name('account');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
+
+route::get('/redirect', [HomeController::class, 'redirect']);
 
 //Paypal
 Route::controller(PaymentController::class)
