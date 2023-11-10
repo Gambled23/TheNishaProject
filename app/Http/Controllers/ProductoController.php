@@ -35,27 +35,21 @@ class ProductoController extends Controller
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
-            'image' => 'required|array',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
         $data = $request->all();
-        
-        $producto = Producto::create($data);
-        echo $producto->id;
+
         if($request->hasfile('image'))
         {
-            
-            foreach($request->file('image') as $image)
-            {
-                $name = $producto->nombre.'.'.'jpg';
-                $image->move(public_path().'/images/', $name);  
-                $data['image'][] = $name;  
-            }
-            
+            $image = $request->file('image');
+            $name = $request->nombre.'.'.'jpg';
+            $image->move(public_path().'/images/', $name);  
+            $data['image'] = $name;  
         }
-        $data['image'] = json_encode($data['image']);
-        
-        
+
+        $producto = Producto::create($data);
+
         return redirect()->route('producto.index');
     }
 
