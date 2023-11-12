@@ -9,9 +9,14 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-            <center>
-                <a href="{{ route('make.payment') }}" class="w-full bg-indigo-500 uppercase rounded-xl font-extrabold text-white px-6 h-8">Pay with PayPal👉</a>
-            </center>
+            <form method="POST" action="{{ route('make.payment') }}">
+                @csrf
+                <input type="number" name="precioTotal" id="precioTotal">
+
+                <div class="flex justify-center items-center mt-4">
+                    <button type="submit" class="w-full bg-indigo-500 uppercase rounded-xl font-extrabold text-white px-6 h-8">Pay with PayPal👉</button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
