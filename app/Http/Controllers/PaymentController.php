@@ -22,7 +22,7 @@ class PaymentController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "MXN",
-                        "value" => "1",
+                        "value" => request('precioTotal'),
                     ]
                 ]
             ]
