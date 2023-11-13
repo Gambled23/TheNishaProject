@@ -28,6 +28,7 @@ $user = Auth::user(); ?>
                 <input type="hidden" name="fechaPedido" value="{{ $pedido->created_at->format('d-m-Y') }}">
                 <input type="hidden" name="precioTotal" value="{{ $pedido->precioTotal }}">
                 <input type="hidden" name="puntoEntrega" value="{{ $pedido->puntoEntrega }}">
+                <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
 
                 <tr class="bg-white border-b">
                     <td class="px-4 py-3">{{ $pedido->created_at->format('d-m-Y') }}</td>
