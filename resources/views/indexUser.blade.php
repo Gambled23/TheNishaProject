@@ -17,6 +17,7 @@ $user = Auth::user(); ?>
                 <th scope="col" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">Total</th>
                 <th scope="col" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">Entrega</th>
                 <th scope="col" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">¿Listo para <br> entrega?</th>
+                <th scope="col" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">Comprobante</th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +43,14 @@ $user = Auth::user(); ?>
                     @else
                         <td class="px-4 py-3"><i class="fa-solid fa-xmark fa-xl" style="color: #a51d2d;"></i></td>
                     @endif
+                    <form  method="post" action="{{ route('pdf') }}">
+                        @csrf
+                        <input type="hidden" name="nombreUsuario" value="{{ $user->name }}">
+                        <input type="hidden" name="fechaPedido" value="{{ $pedido->created_at->format('d-m-Y') }}">
+                        <input type="hidden" name="precioTotal" value="{{ $pedido->precioTotal }}">
+                        <input type="hidden" name="puntoEntrega" value="{{ $pedido->puntoEntrega }}">
+                        <td class="px-4 py-3"><button type="submit">Comprobante</button></td>
+                    </form>
                 </tr>
             @endforeach
         </tbody>
