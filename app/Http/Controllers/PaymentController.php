@@ -76,9 +76,7 @@ class PaymentController extends Controller
             $this->pedido->pagado = true;
             $this->pedido->save();
 
-            return redirect()
-                ->route('create.payment')
-                ->with('success', 'Transaction complete.');
+            return redirect()->route('producto.index');
         } else {
             return redirect()
                 ->route('create.payment')

@@ -4,8 +4,9 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Pedidos;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -37,31 +38,15 @@ Route::post('/producto', [ProductoController::class, 'store'])->name('producto.s
 
 Route::resource('categoria', CategoriaController::class);
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
-
 Route::get('/account', function () {
-    return view('indexUser');
+    $pedidos = Pedidos::where('user_id', Auth::id())->get();
+    return view('indexUser', ['pedidos' => $pedidos]);
 })->name('account');
 
 Route::get('/tests', function () {
     $제품 = producto::all();
     return view('tests', ['제품' => $제품]);
 });
-
-Route::post('/upload', function (Request $request) {
-    if ($request->hasFile('image')) {
-        foreach ($request->file('image') as $file) {
-            $productId = $request->input('product');
-            $producto = Producto::find($productId);
-            $imageName = $producto->nombre.$producto->imagenesTotales.'.' . $file->extension();
-            $file->move(public_path('assets'), $imageName);
-            $producto->imagenesTotales = $producto->imagenesTotales + 1;
-            $producto->save();
-        }
-    }
-})->name('upload');
 
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
@@ -89,7 +74,7 @@ Route::controller(PaymentController::class)
         Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
         Route::get('payment-success', 'paymentSuccess')->name('success.payment');
     });
-
+    
 Route::any('/search',function(){
     $q = request()->get('q');
     $productos = Producto::where('nombre','LIKE','%'.$q.'%')->get();

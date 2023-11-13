@@ -90,9 +90,9 @@
                                             <!--Han sido depositadas en las rutas 🫡-->
                                             Punto de entrega:
                                             <select name="puntoEntrega" id="puntoEntrega">
-                                                <option value="a">CUCEI</option>
-                                                <option value="b">CUCEA</option>
-                                                <option value="c">Linea 3</option>
+                                                <option value="CUCEI">CUCEI</option>
+                                                <option value="CUCEA">CUCEA</option>
+                                                <option value="Linea 3">Linea 3</option>
                                             </select>
                                             <input type="hidden" name="precioTotal" value="{{ Cart::getTotal() }}">
                                             <button type="submit" class="text-slate-50 bg-gray-800 hover:bg-gray-800/590 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2">
