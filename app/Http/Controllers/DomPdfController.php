@@ -17,7 +17,7 @@ class DomPdfController extends Controller
             'titulo' => 'Welcome to Nisha',
             'nombreUsuario' => $request->nombreUsuario,
             'fechaPedido' => $request->fechaPedido,
-            'fechaComprobante' => date('m/d/Y h:i a', time()),
+            'fechaComprobante' => date('d-m-Y h:i a', time()),
             'precioTotal' => $request->precioTotal,
             'puntoEntrega'=> $request->puntoEntrega,
             'trabajos' => $trabajos
