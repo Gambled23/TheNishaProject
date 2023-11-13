@@ -4,24 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pedidos;
+use App\Models\Trabajos;
+use App\Models\Producto;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+
 
 class PaymentController extends Controller
 {
     //Crear pedido
     protected $pedido;
-
+    protected $cartItems;
     public function __construct()
     {
         $this->pedido = new Pedidos;
     }
     public function handlePayment(Request $request)
     {
+        //Crear pedido
         $this->pedido->fill($request->all());
         $this->pedido->user_id = Auth::id();
         $this->pedido->save();
+        $this->cartItems = json_decode($request->cartItems, true);
 
+        //Crear trabajo
+        foreach ($this->cartItems as $item) {
+            $trabajo = new Trabajos;
+            $trabajo->pedido_id = $this->pedido->id;
+            $trabajo->cantidad = $item['quantity'];
+            $producto = Producto::where('nombre', $item['name'])->first();
+            $trabajo->producto_id = $producto->id;
+            $trabajo->save();
+        }
+
+        //Pagar
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
@@ -35,8 +52,8 @@ class PaymentController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "MXN",
-                        "value" => request('precioTotal'),
-                        //"value" => '0.1',
+                        //"value" => request('precioTotal'),
+                        "value" => '0.1',
                     ]
                 ]
             ]
@@ -76,7 +93,7 @@ class PaymentController extends Controller
             $this->pedido->pagado = true;
             $this->pedido->save();
 
-            return redirect()->route('producto.index');
+            return redirect()->route('account');
         } else {
             return redirect()
                 ->route('create.payment')
