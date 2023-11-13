@@ -40,7 +40,9 @@ Route::post('/producto', [ProductoController::class, 'store'])->name('producto.s
 Route::resource('categoria', CategoriaController::class);
 
 Route::get('/account', function () {
-    $pedidos = Pedidos::where('user_id', Auth::id())->get();
+    $pedidos = Pedidos::where('user_id', Auth::id())
+                      ->where('pagado', 1)
+                      ->get();
     return view('indexUser', ['pedidos' => $pedidos]);
 })->name('account');
 
