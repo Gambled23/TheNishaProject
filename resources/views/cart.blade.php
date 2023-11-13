@@ -4,7 +4,7 @@
 <main class="my-8">
     <div class="container px-6 mx-auto">
         <div class="flex justify-center my-6">
-            <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+            <div class="flex flex-col w-full p-8 text-gray-800 pin-r pin-y md:w-4/5 lg:w-4/5">
                 @if(!Cart::isEmpty())
                 @if ($message = Session::get('success'))
                 <div class="p-4 mb-3 bg-blue-400 rounded">
@@ -88,7 +88,7 @@
                         <!-- DEPOSITE AKI VALIDACIONES PARA Q SE TENGA Q LOGEAR -->
                         <!--Han sido depositadas en las rutas 🫡-->
                         Punto de entrega:
-                        <select name="puntoEntrega" id="puntoEntrega">
+                        <select name="puntoEntrega" id="puntoEntrega" style="font-family: Arial, sans-serif; color: #333; background-color: #f3f3f3; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 10px;">
                             <option value="CUCEI">CUCEI</option>
                             <option value="CUCEA">CUCEA</option>
                             <option value="Linea 3">Linea 3</option>
