@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Pedidos;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+    //Crear pedido
+    protected $pedido;
+
+    public function __construct()
+    {
+        $this->pedido = new Pedidos;
+    }
     public function handlePayment(Request $request)
     {
+        $this->pedido->fill($request->all());
+        $this->pedido->user_id = Auth::id();
+        $this->pedido->save();
+
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
@@ -23,6 +36,7 @@ class PaymentController extends Controller
                     "amount" => [
                         "currency_code" => "MXN",
                         "value" => request('precioTotal'),
+                        //"value" => '0.1',
                     ]
                 ]
             ]
@@ -56,7 +70,12 @@ class PaymentController extends Controller
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
+
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $this->pedido = Pedidos::latest()->first();
+            $this->pedido->pagado = true;
+            $this->pedido->save();
+
             return redirect()
                 ->route('create.payment')
                 ->with('success', 'Transaction complete.');
