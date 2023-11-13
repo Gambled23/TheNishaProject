@@ -89,7 +89,7 @@
                                             <!-- DEPOSITE AKI VALIDACIONES PARA Q SE TENGA Q LOGEAR -->
                                             <!--Han sido depositadas en las rutas 🫡-->
                                             Punto de entrega:
-                                            <select name="entrega" id="entrega">
+                                            <select name="puntoEntrega" id="puntoEntrega">
                                                 <option value="a">CUCEI</option>
                                                 <option value="b">CUCEA</option>
                                                 <option value="c">Linea 3</option>
