@@ -1,7 +1,6 @@
 @extends ('layouts.main')
 @section('body')
 
-{{ $cartItems }}
 <main class="my-8">
     <div class="container px-6 mx-auto">
         <div class="flex justify-center my-6">
