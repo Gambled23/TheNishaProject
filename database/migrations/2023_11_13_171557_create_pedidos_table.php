@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('puntoEntrega');
             $table->boolean('completado')->default(false);
             $table->double('precioTotal');
