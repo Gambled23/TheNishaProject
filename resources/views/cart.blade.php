@@ -16,7 +16,7 @@
                         <thead>
                             <tr class="h-12 uppercase">
                                 <th class="hidden md:table-cell"></th>
-                                <th class="text-left">Nombre</th>
+                                <th class="pl-2 text-left">Producto</th>
                                 <th class="pl-5 text-left lg:text-right lg:pl-0">
                                     <span class="lg:hidden" title="Quantity">Cantidad</span>
                                     <span class="hidden lg:inline">Cantidad</span>
@@ -33,13 +33,13 @@
                             <tr>
                                 <td class="hidden pb-4 md:table-cell" style="width:230px;">
                                     <a href="{{ route('producto.show', $producto)}}">
-                                        <img src='{{ URL::to("images/{$item->name}.jpg") }}' alt="{{ $item->name }}">
+                                        <img src='{{ URL::to("images/{$item->name}.jpg") }}' alt="{{ $item->name }}" style="border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
                                     </a>
                                 </td>
                                 <td>
 
                                     <a href="{{ route('producto.show', $producto)}}">
-                                        <p class="mb-2 text-gray-900 font-bold">{{ $item->name }}</p>
+                                        <p class="mb-2 ml-2 text-gray-900 font-bold">{{ $item->name }}</p>
                                     </a>
                                 </td>
                                 <td class="justify-center mt-6 md:justify-end md:flex">
@@ -63,7 +63,7 @@
                                     <form action="{{ route('cart.remove') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{ $item->id }}" name="id">
-                                        <button class="px-3 py-1 text-white bg-gray-800 shadow rounded-full">x</button>
+                                        <button class="transition duration-150 ease-in-out px-3 py-1 text-white bg-red-600 hover:bg-red-800  shadow rounded-full">x</button>
                                     </form>
                                 </td>
                             </tr>
@@ -71,13 +71,14 @@
                         </tbody>
                     </table>
                     <div class="flex justify-between items-center my-5">
-                        <div class="font-semibold text-2xl">Total: ${{ Cart::getTotal() }}</div>
+                        
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
                                 <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Limpiar carrito</button>
                             </form>
                         </div>
+                        <div class="font-semibold text-2xl">Total: ${{ Cart::getTotal() }}</div>
                     </div>
                 </div>
                 <div class="flex justify-between items-center my-5">
