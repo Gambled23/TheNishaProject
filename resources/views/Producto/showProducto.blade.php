@@ -11,7 +11,7 @@
         <h2 class="my-2">${{ $producto->precio }}</h2>
         <p class="my-1">{{ $producto->descripcion }}</p>
         <div class="flex justify-center">
-            <x-carrito-button/>
+            <x-carrito-button :producto="$producto"/>
         </div>
     </div>
 </div>
