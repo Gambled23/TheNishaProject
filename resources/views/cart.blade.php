@@ -84,7 +84,7 @@
                                         <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Seguir navegando</button>
                                     </a>
                                 </div>
-                                    <form action="{{ route('make.payment') }}">
+                                    <form method="post" action="{{ route('make.payment') }}">
                                             @csrf
                                             <!-- DEPOSITE AKI VALIDACIONES PARA Q SE TENGA Q LOGEAR -->
                                             <!--Han sido depositadas en las rutas 🫡-->

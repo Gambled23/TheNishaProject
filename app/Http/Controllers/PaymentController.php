@@ -22,7 +22,8 @@ class PaymentController extends Controller
                 0 => [
                     "amount" => [
                         "currency_code" => "MXN",
-                        "value" => request('precioTotal'),
+                        //"value" => request('precioTotal'),
+                        "value" => '1',
                     ]
                 ]
             ]
@@ -56,6 +57,8 @@ class PaymentController extends Controller
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
+        //Crear orden
+        dd($response);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             return redirect()
                 ->route('create.payment')
