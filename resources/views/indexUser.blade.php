@@ -21,28 +21,37 @@ $user = Auth::user(); ?>
         </thead>
         <tbody>
             @foreach ($pedidos as $pedido)
+            <form  method="post" action="{{ route('pdf') }}">
+                <!--Datos para el pdf-->
+                @csrf
+                <input type="hidden" name="nombreUsuario" value="{{ $user->name }}">
+                <input type="hidden" name="fechaPedido" value="{{ $pedido->created_at->format('d-m-Y') }}">
+                <input type="hidden" name="precioTotal" value="{{ $pedido->precioTotal }}">
+                <input type="hidden" name="puntoEntrega" value="{{ $pedido->puntoEntrega }}">
+
                 <tr class="bg-white border-b">
                     <td class="px-4 py-3">{{ $pedido->created_at->format('d-m-Y') }}</td>
                     <td class="px-4 py-3">${{ $pedido->precioTotal }}</td>
                     @switch($pedido->puntoEntrega)
                         @case('CUCEI')
-                            <td class="px-4 py-3"><a target="_blank" href="https://maps.app.goo.gl/4q7XopET6G2ZsxbY7">CUCEI</a></td>
+                            <td class="px-4 py-3 text-violet-950 hover:text-violet-600 hover:font-bold"><a target="_blank" href="https://maps.app.goo.gl/4q7XopET6G2ZsxbY7">CUCEI</a></td>
                             @break
                         @case('CUCEA')
-                            <td class="px-4 py-3"><a target="_blank" href="https://maps.app.goo.gl/XiGAgWJxiNvsfrMx6">CUCEA</a></td>
+                            <td class="px-4 py-3 text-violet-950 hover:text-violet-600 hover:font-bold"><a target="_blank" href="https://maps.app.goo.gl/XiGAgWJxiNvsfrMx6">CUCEA</a></td>
                             @break
                         @case('Linea 3')
-                            <td class="px-4 py-3"><a target="_blank" href="https://maps.app.goo.gl/z3xdn97PwUVw93HW7">Linea 3</a></td>
+                            <td class="px-4 py-3 text-violet-950 hover:text-violet-600 hover:font-bold"><a target="_blank" href="https://maps.app.goo.gl/z3xdn97PwUVw93HW7">Linea 3</a></td>
                             @break
                         @default
-                            <td class="px-4 py-3"><a target="_blank" href="https://wa.me/+523334490542"></a>Acordar con Nisha</td> 
+                            <td class="px-4 py-3 text-violet-950 hover:text-violet-600 hover:font-bold"><a target="_blank" href="https://wa.me/+523334490542"></a>Acordar con Nisha</td> 
                     @endswitch
                     @if ($pedido->completado)
-                        <td class="px-4 py-3"><i class="fa-solid fa-paw fa-xl" style="color: #26a269;"></i></td>
+                        <td class="px-4 py-3"><button type="submit" title="Descargar comprobante"><i class="fa-solid fa-paw fa-xl" style="color: #26a269;"></i></button></td>
                     @else
-                        <td class="px-4 py-3"><i class="fa-solid fa-xmark fa-xl" style="color: #a51d2d;"></i></td>
+                        <td class="px-4 py-3"><button type="submit" title="Descargar comprobante"><i class="fa-solid fa-xmark fa-xl" style="color: #a51d2d;"></i></button></td>
                     @endif
                 </tr>
+            </form>
             @endforeach
         </tbody>
     </table>

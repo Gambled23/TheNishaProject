@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\DomPdfController;
 
 Route::get('/', function () {
     $productos = Producto::take(2)->get();
@@ -92,3 +93,5 @@ Route::post('/compra', function (Request $request) {
     $data = $request->all();
     return view('confirmar_compra', ['data' => $data]);
 })->name('entrega');
+
+Route::post('/pdf', [DomPdfController::class, 'getPdf'])->name('pdf');
