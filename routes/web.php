@@ -101,3 +101,9 @@ Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store')->m
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update')->middleware('auth');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove')->middleware('auth');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear')->middleware('auth');
+
+Route::post('/entrega', function (Request $request) {
+    $data = $request->all();
+    //dd($data);
+    return view('entrega', ['data' => $data]);
+})->name('entrega');
