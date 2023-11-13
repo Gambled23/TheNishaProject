@@ -10,9 +10,7 @@
             <span class="text-sm font-semibold text-gray-700">${{ $producto->precio }}</span>
         </div>
         <div class="mt-6 flex justify-center">
-            <form action="{{ route('home') }}">
-                <x-carrito-button />
-            </form>
+            <x-carrito-button :producto="$producto"/>
         </div>
     </div>
 </div>

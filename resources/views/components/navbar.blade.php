@@ -31,15 +31,20 @@
             </div>
 
 
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <a href="{{ route('cart.list') }}" class="flex items-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
+                        <span class="text-gray-700">{{ Cart::getTotalQuantity()}}</span> 
+                    </a>
+                </div>
+            </div>
 
             <!--Iconos derecha-->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if ( Auth::user() )
                 <a href="{{ route('account') }}">
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
-                    <a href="{{ route('checkout') }}">
-                        <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
-                    </a>
                 @else
                     <a href="{{ route('login') }}">
                     Iniciar sesión
