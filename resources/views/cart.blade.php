@@ -1,6 +1,5 @@
 @extends ('layouts.main')
 @section('body')
-
 <main class="my-8">
     <div class="container px-6 mx-auto">
         <div class="flex justify-center my-6">
@@ -28,14 +27,18 @@
                         </thead>
                         <tbody>
                             @foreach ($cartItems as $item)
+                            @php
+                                $producto = App\Models\Producto::where('nombre', $item->name)->first();
+                            @endphp
                             <tr>
                                 <td class="hidden pb-4 md:table-cell" style="width:230px;">
-                                    <a href="#">
+                                    <a href="{{ route('producto.show', $producto)}}">
                                         <img src='{{ URL::to("images/{$item->name}.jpg") }}' alt="{{ $item->name }}">
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#">
+
+                                    <a href="{{ route('producto.show', $producto)}}">
                                         <p class="mb-2 text-gray-900 font-bold">{{ $item->name }}</p>
                                     </a>
                                 </td>
