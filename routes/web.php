@@ -96,8 +96,8 @@ Route::any('/search',function(){
 });
 
 //Carrito
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+Route::get('cart', [CartController::class, 'cartList'])->name('cart.list')->middleware('auth');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store')->middleware('auth');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update')->middleware('auth');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove')->middleware('auth');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear')->middleware('auth');
