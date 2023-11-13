@@ -1,6 +1,7 @@
 @extends ('layouts.main')
 @section('body')
 
+{{ $cartItems }}
     <main class="my-8">
         <div class="container px-6 mx-auto">
             <div class="flex justify-center my-6">
@@ -45,7 +46,7 @@
                                                         <form action="{{ route('cart.update') }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{ $item->id}}" class="" >
-                                                            <input type="number" name="quantity" value="{{ $item->quantity }}" 
+                                                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" 
                                                             class="w-full text-center h-10 text-gray-800 outline-none rounded border border-gray-600 py-3" />
                                                             <button class="w-full px-4 mt-1 mb-3 py-1.5 text-sm rounded shadow text-violet-100 bg-gray-800">Actualizar</button>
                                                         </form>
