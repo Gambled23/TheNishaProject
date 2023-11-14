@@ -12,9 +12,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::all();
+        $producto = Producto::with('tags')->get();
         //$producto = Producto::with('tags')->orderBy(column:'id')->get();
-        return view('Producto/indexProducto', ['productos'=>$producto]);
+        return view('Producto/indexProducto', compact('producto'));
     }
 
     /**
