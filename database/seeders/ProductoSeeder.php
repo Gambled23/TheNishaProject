@@ -16,9 +16,9 @@ class ProductoSeeder extends Seeder
     {
         Producto::factory()->count(5)->create();
 
-        foreach (Producto::all() as $producto) {
-            $tags = Tag::inRandomOrder()->take(rand(1, 3))->pluck('id'); //por cada producto se asignan de 1 a 3 tags :>
-            $producto->tags()->attach($tags); //pa controlador vas padrino aAa
-        }
+        // foreach (Producto::all() as $producto) {
+        //     $tags = \App\Models\Tag::inRandomOrder()->take(rand(1, 3))->pluck('id'); //por cada producto se asignan de 1 a 3 tags :>
+        //     $producto->tags()->attach($tags); //pa controlador vas padrino aAa
+        //}
     }
 }

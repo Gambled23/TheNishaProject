@@ -20,7 +20,7 @@
                 <tbody>
                     <tr>
                         @foreach ($producto->tags as $tags)
-                            {{tag->nombre}}
+                            {{$tags->nombre}}
                         @endforeach
                     <tr>
                 </tbody>
