@@ -13,6 +13,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+
     //Crear pedido
     protected $pedido;
     protected $cartItems;
