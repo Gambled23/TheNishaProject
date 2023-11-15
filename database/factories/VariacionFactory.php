@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Variacion>
  */
-class TagFactory extends Factory
+class VariacionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,6 @@ class TagFactory extends Factory
     {
         return [
             'nombre'=>$this->faker->unique()->word(),
-            //'descripcion'=>$this->faker->text(),
         ];
     }
 }

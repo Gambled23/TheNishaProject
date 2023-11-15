@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Variacion extends Model
 {
     use HasFactory;
     protected $fillable = ['nombre'];
@@ -14,5 +14,4 @@ class Tag extends Model
     {
         return $this->belongsToMany(Producto::class);
     }
-
 }

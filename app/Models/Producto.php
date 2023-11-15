@@ -15,4 +15,9 @@ class Producto extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function variacions()
+    {
+        return $this->belongsToMany(Variacion::class);
+    }
 }

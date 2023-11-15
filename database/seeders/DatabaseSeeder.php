@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductoSeeder::class,
             TagSeeder::class,
+            VariacionSeeder::class,
         ]);
     }
 }
