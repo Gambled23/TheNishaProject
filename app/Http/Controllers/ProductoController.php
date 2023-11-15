@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
+use App\Models\Variacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\crud;
 
 class ProductoController extends Controller
 {
@@ -12,7 +14,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::with('tags')->get();
+        $producto = Producto::with('tags', 'variacions')->get();
         //$producto = Producto::with('tags')->orderBy(column:'id')->get();
         return view('Producto/indexProducto', compact('producto'));
     }
@@ -22,7 +24,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('Producto/createProducto');
+        $variacions = Variacion::all();
+        return view('Producto/createProducto', compact('variacions'));
     }
 
     /**

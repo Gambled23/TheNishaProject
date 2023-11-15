@@ -18,11 +18,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <td>
                         @foreach ($producto->tags as $tags)
                             {{$tags->nombre}}
                         @endforeach
+                    <td>
+                </tbody>
+            </table>
+            <table>
+                <thead>
                     <tr>
+                        <th>Variaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>
+                        @foreach ($producto->variacions as $variacions)
+                            {{$variacions->nombre}}
+                        @endforeach
+                    <td>
                 </tbody>
             </table>
         </div>
