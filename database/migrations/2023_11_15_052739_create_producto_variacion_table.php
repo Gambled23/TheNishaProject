@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('producto_id')->constrained();
             $table->foreignId('variacion_id')->constrained();
 
-            $table->string('tiempo_total');
+            $table->string('tiempo_total')->nullable();
             
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class VariacionSeeder extends Seeder
      */
     public function run(): void
     {
-        Variacion::factory()->count(5)->create();
+        Variacion::factory()->count(3)->create();
 
         $productos = Producto::all();
 

@@ -20,7 +20,7 @@ return [
             'id_helper' => ' ',
             'nombre' => 'Nombre',
             'nombre_helper' => ' ',
-            'validations' => 'Validations',
+            'variacions' => 'Tiempo',
             'validations_helper' => ' ',
         ],
     ],

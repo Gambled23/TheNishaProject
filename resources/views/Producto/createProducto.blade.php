@@ -74,7 +74,7 @@
                     @enderror
                     </p>
                     <div class="form-group">
-                        <label class="required" for="variacions">{{ trans('crud.producto.campos.validations') }}</label>
+                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
                         
                         @include('Producto.partials.variations')
 
