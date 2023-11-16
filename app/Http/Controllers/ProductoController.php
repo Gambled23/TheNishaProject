@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
 use App\Models\Variacion;
 use Illuminate\Http\Request;
@@ -52,15 +54,7 @@ class ProductoController extends Controller
 
         $producto = Producto::create($data);
 
-        $variacions = collect($request->input('variacions', []))
-            ->map(function($variacion)
-            {
-                return ['tiempo_total' => $variacion];
-            });
-
-        $producto->variacions()->sync(
-            $variacions
-        );
+        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
         return redirect()->route('producto.index');
     }
@@ -78,24 +72,42 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('Producto/editProducto', compact('producto')); 
+        $producto->load('variacions');
+
+        $variacions = Variacion::get()->map(function($variacion) use ($producto)
+        {
+            $variacion->value = data_get($producto->variacions->firstWhere('id', $variacion->id), 'pivot.tiempo_total');
+            return $variacion;
+        });
+
+        return view('Producto/editProducto', [
+            'variacions' => $variacions,
+            'producto' => $producto,
+        ]); 
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(UpdateProductoRequest $request, Producto $producto)
     {
-        $validated = $request->validate([
-            'nombre' => ['required', 'min:2', 'max:100'],
-            'descripcion' => ['required', 'min:5', 'max:500'], 
-            'precio' => 'required|numeric', 
-            'disponibles' => 'required|numeric'
-        ]);
 
+        $data = $request->validated();
 
-        Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        $producto->update($data);
+
+        //Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+
         return redirect()->route('producto.index'); 
+    }
+
+    private function mapVariacions($variacions)
+    {
+        return collect($variacions)->map(function ($i) {
+            return ['tiempo_total' => $i];
+        });
     }
 
     /**
