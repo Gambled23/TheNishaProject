@@ -5,7 +5,6 @@ use App\Models\Producto;
 use App\Models\Variacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\crud;
 
 class ProductoController extends Controller
 {
@@ -14,9 +13,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::with('tags', 'variacions')->get();
+        $productos = Producto::with('tags', 'variacions')->get();
         //$producto = Producto::with('tags')->orderBy(column:'id')->get();
-        return view('Producto/indexProducto', compact('producto'));
+        return view('Producto/indexProducto', compact('productos'));
     }
 
     /**
@@ -52,6 +51,16 @@ class ProductoController extends Controller
         }
 
         $producto = Producto::create($data);
+
+        $variacions = collect($request->input('variacions', []))
+            ->map(function($variacion)
+            {
+                return ['tiempo_total' => $variacion];
+            });
+
+        $producto->variacions()->sync(
+            $variacions
+        );
 
         return redirect()->route('producto.index');
     }
