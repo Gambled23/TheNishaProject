@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
+
+use App\Http\Requests\MassDestroyProductoRequest;
+use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
+use App\Models\Variacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -12,9 +16,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = Producto::all();
+        $productos = Producto::with('tags', 'variacions')->get();
         //$producto = Producto::with('tags')->orderBy(column:'id')->get();
-        return view('Producto/indexProducto', ['productos'=>$producto]);
+        return view('Producto/indexProducto', compact('productos'));
     }
 
     /**
@@ -22,7 +26,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('Producto/createProducto');
+        $variacions = Variacion::all();
+        return view('Producto/createProducto', compact('variacions'));
     }
 
     /**
@@ -50,6 +55,8 @@ class ProductoController extends Controller
 
         $producto = Producto::create($data);
 
+        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+
         return redirect()->route('producto.index');
     }
 
@@ -66,24 +73,48 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('Producto/editProducto', compact('producto')); 
+        $producto->load('variacions');
+
+        $variacions = Variacion::get()->map(function($variacion) use ($producto)
+        {
+            $variacion->value = data_get($producto->variacions->firstWhere('id', $variacion->id), 'pivot.tiempo_total');
+            return $variacion;
+        });
+
+        return view('Producto/editProducto', [
+            'variacions' => $variacions,
+            'producto' => $producto,
+        ]); 
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(UpdateProductoRequest $request, Producto $producto)
     {
-        $validated = $request->validate([
-            'nombre' => ['required', 'min:2', 'max:100'],
-            'descripcion' => ['required', 'min:5', 'max:500'], 
-            'precio' => 'required|numeric', 
-            'disponibles' => 'required|numeric'
-        ]);
 
+        $data = $request->validated();
 
-        Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        $producto->update($data);
+
+        //Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+
         return redirect()->route('producto.index'); 
+    }
+
+    private function mapVariacions($variacions)
+    {
+        return collect($variacions)->map(function ($i) {
+            return ['tiempo_total' => $i];
+        });
+    }
+
+    public function massDestroy(MassDestroyProductoRequest $request){
+        Producto::whereIn('id', request('ids'))->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**

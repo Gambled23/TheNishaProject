@@ -2,11 +2,12 @@
 @section('body')
 <body class="flex justify-center">
     <div class="w-full max-w-xs">
+        
         <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR PRODUCTO</h1>
 
-            <form method="POST" action="{{ route('producto.update', $producto) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST" action="{{ route('producto.update', [$producto->id]) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
                 @csrf <!--cross site resource forgery-->
-                @method('PATCH') <!--Apegado a rest-->
+                @method('PUT') <!--Apegado a rest-->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ $producto->nombre }}">
@@ -51,6 +52,15 @@
                     </div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        
+                        @include('Producto.partials.variations')
+
+
+                </div>
+
                 <div class="mb-4">
                     <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Actualizar">
                 </div>

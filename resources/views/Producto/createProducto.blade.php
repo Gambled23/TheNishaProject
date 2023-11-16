@@ -6,6 +6,7 @@
 
             @csrf
             <div class="px-4 py-4 my-4 bg-violet-50 rounded-lg shadow-md flex flex-col md:flex-row mx-auto"> <!-- Div información derecha -->
+
                 <div class="w-full md:w-1/2 md:pr-4">
                     <label class="h-full shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white flex justify-center items-center cursor-pointer">
                         <input type="file" class="hidden" name="image" id="image" onchange="updateFileName(this)">
@@ -26,7 +27,9 @@
                         }
                     </script>
                 </div>
+
                 <div class="w-full md:w-1/2">
+
                     <h1 class="text-4xl font-bold">
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{old('nombre')}}">
                         @error('nombre')
@@ -37,6 +40,7 @@
                         </div>
                         @enderror
                     </h1>
+
                     <h2 class="my-2">
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="precio" id="precio" placeholder="$" value="{{old('precio')}}">
                         @error('precio')
@@ -47,6 +51,7 @@
                         </div>
                         @enderror
                     </h2>
+
                     <h3>
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="disponibles" id="disponibles" placeholder="Stock" value="{{old('disponibles')}}">
                         @error('disponibles')
@@ -57,6 +62,7 @@
                         </div>
                         @enderror
                     </h3>
+
                     <p class="my-1">
                         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" value="{{old('descripcion')}}">
                         @error('descripcion')
@@ -67,6 +73,18 @@
                     </div>
                     @enderror
                     </p>
+                    <div class="form-group">
+                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        
+                        @include('Producto.partials.variations')
+
+                        @if($errors->has('variacions'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('variacions') }}
+                            </div>
+                        @endif
+
+                    </div>
                 </div>
             </div>
         </div>

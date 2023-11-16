@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre', 'descripcion', 'precio', 'disponibles'];
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'disponibles', 'imagenesTotales'];
     public $timestamps = false;
 
-    public function categorias()
+    public function tags()
     {
-        return $this->belongsToMany(Categoria::class);
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function variacions()
+    {
+        return $this->belongsToMany(Variacion::class)
+            ->withPivot(['tiempo_total']);
     }
 }
