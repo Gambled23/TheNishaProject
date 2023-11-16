@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('producto_variacion', function (Blueprint $table) {
-            $table->foreignId('producto_id')->constrained();
-            $table->foreignId('variacion_id')->constrained();
+            $table->foreignId('producto_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
+            $table->foreignId('variacion_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
             $table->string('tiempo_total')->default('no disponible');
             

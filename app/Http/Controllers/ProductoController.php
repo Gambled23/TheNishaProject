@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MassDestroyProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
 use App\Models\Variacion;
@@ -108,6 +109,12 @@ class ProductoController extends Controller
         return collect($variacions)->map(function ($i) {
             return ['tiempo_total' => $i];
         });
+    }
+
+    public function massDestroy(MassDestroyProductoRequest $request){
+        Producto::whereIn('id', request('ids'))->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
