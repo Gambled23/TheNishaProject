@@ -1,5 +1,15 @@
-@extends ('layouts.main')
+@extends ('layouts.admin')
 @section('body')
+
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+
+
+<?php
+$pagina = "Productos"
+?>
+
+<x-admin.upper-bar :$pagina/>
+
 <body class="flex justify-center">
     <div class="w-full max-w-xs">
         

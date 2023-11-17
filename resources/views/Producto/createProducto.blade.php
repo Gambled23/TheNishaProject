@@ -1,5 +1,14 @@
-@extends ('layouts.main')
+@extends ('layouts.admin')
 @section('body')
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+
+
+<?php
+$pagina = "Productos"
+?>
+
+<x-admin.upper-bar :$pagina/>
+
 <form method="POST" action="{{ route('producto.store') }}" enctype="multipart/form-data">
     <div class="w-full">
         <div class="flex flex-row justify-center"> <!-- Div de parte superior -->
@@ -95,6 +104,7 @@
         </button>
     </div>
 </form>
+                    </main>
 
 <style>
     @media (min-width: 768px) {
