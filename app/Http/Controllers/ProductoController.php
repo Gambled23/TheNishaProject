@@ -97,12 +97,17 @@ class ProductoController extends Controller
      */
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
-
-        $data = $request->validated();
-
+        $request->validate([
+            'nombre' => ['required', 'min:2', 'max:100'],
+            'descripcion' => ['required', 'min:5', 'max:500'],
+            'precio' => 'required|numeric',
+            'disponibles' => 'required|numeric',
+            'producto.variacions.*' => ['integer'],
+            'variacions' => 'required|array',     
+        ]);
+        $data = $request->all();
         $producto->update($data);
-
-        //Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
         session()->flash('success', 'El producto se modificó con exito');
