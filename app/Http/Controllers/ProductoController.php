@@ -39,7 +39,11 @@ class ProductoController extends Controller
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
+            'producto.variacions.*' => ['integer'],
+            'variacions' => 'required|array',
+            
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            
         ]);
 
         $data = $request->all();
@@ -56,6 +60,7 @@ class ProductoController extends Controller
 
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
+        session()->flash('success', 'El producto se añadió con exito');
         return redirect()->route('producto.index');
     }
 
@@ -100,6 +105,7 @@ class ProductoController extends Controller
         //Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
+        session()->flash('success', 'El producto se modificó con exito');
         return redirect()->route('producto.index'); 
     }
 
@@ -116,6 +122,7 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
+        session()->flash('success', 'El producto se elimino con exito');
         return redirect()->route('producto.index');
     }
 }

@@ -12,6 +12,12 @@ $pagina = "Productos"
 
 <div class="flex flex-col">
     <h1 class="text-center mb-10 text-2xl font-mono"><br>Productos</h1>
+    @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-blue-400 rounded">
+                    <p class="text-white">{{ $message }}</p>
+                </div>
+                @endif
+                
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
