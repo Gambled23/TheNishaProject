@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Models\Producto;
+
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -22,7 +24,9 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('Tag/createTag');
+        $products = Producto::all();
+        return view('Tag/createTag', compact('products'));
+
     }
 
     /**
@@ -34,7 +38,10 @@ class TagController extends Controller
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
 
-        Tag::create($request->all());
+        $tag = Tag::create($request->all());
+
+        $tag->productos()->attach($request->producto_id);
+
         session()->flash('success', 'El Tag se creo con exito');
         return redirect()->route('tag.index');
     }
