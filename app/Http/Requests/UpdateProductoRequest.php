@@ -29,7 +29,7 @@ class UpdateProductoRequest extends FormRequest
                 'required',
             ],
             'variacions.*' =>[
-                'integer',
+                'string',
             ],
             'variacions' =>[
                 'required',
