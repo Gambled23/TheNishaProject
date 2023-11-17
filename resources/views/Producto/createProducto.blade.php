@@ -9,6 +9,8 @@ $pagina = "Productos"
 
 <x-admin.upper-bar :$pagina/>
 
+
+<div class="p-6">
 <form method="POST" action="{{ route('producto.store') }}" enctype="multipart/form-data">
     <div class="w-full">
         <div class="flex flex-row justify-center"> <!-- Div de parte superior -->
@@ -104,7 +106,7 @@ $pagina = "Productos"
         </button>
     </div>
 </form>
-                    </main>
+</main>
 
 <style>
     @media (min-width: 768px) {
