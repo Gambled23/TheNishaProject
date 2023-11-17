@@ -37,7 +37,7 @@ $pagina = "Productos"
                             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                                 
                                 <td class="whitespace-nowrap px-6 py-4 font-medium"><a href ="{{ route('producto.show', $producto)}}">{{ $producto->nombre }}</a></td> 
-                                <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $producto->descripcion }}</td>
+                                <td class="whitespace-nowrap px-6 py-4 font-medium max-w-[200px] overflow-hidden overflow-ellipsis">{{ $producto->descripcion }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">${{ $producto->precio }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $producto->disponibles }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium"> <button type="button" class="text-black bg-white-700 hover:bg-gray-200 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
