@@ -18,10 +18,10 @@
                 </a>
                 <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                     <li class="mb-4">
-                        <a href="producto" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Producto</a>
+                        <a href="{{url('producto')}}" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Producto</a>
                     </li> 
                     <li class="mb-4">
-                        <a href="#" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Tag</a>
+                        <a href="{{url('tag')}}" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Tag</a>
                     </li> 
                     <li class="mb-4">
                         <a href="#" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Variacion</a>

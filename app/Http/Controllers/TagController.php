@@ -12,7 +12,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+
+        return view('Tag/indexTag', compact('tags'));
     }
 
     /**
@@ -20,7 +22,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('Tag/createTag');
     }
 
     /**
@@ -28,7 +30,13 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'min:2', 'max:30']
+        ]);
+
+        Tag::create($request->all());
+        session()->flash('success', 'El Tag se creo con exito');
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -36,7 +44,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('Tag/showTag', compact('tag'));
     }
 
     /**
@@ -44,7 +52,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('Tag/editTag', compact('tag'));
     }
 
     /**
@@ -52,7 +60,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => ['required', 'min:2', 'max:30']
+        ]);
+
+        Tag::where('id', $tag->id)->update($request->except('_token', '_method'));
+
+        session()->flash('success', 'El Tag se actualizo con exito');
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -60,6 +75,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        session()->flash('success', 'El tag se eliminó con exito');
+        return redirect()->route('tag.index');
     }
 }

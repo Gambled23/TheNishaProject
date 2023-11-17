@@ -1,19 +1,19 @@
 <?php
 
-use App\Models\Producto;
-use App\Models\Categoria;
 use App\Models\Pedidos;
+use App\Models\Producto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\DomPdfController;
 
 Route::get('/', function () {
     $productos = Producto::take(2)->get();
@@ -37,7 +37,7 @@ Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('p
 
 Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
 
-Route::resource('categoria', CategoriaController::class);
+Route::resource('tag', TagController::class);
 
 Route::get('/account', function () {
     $pedidos = Pedidos::where('user_id', Auth::id())
