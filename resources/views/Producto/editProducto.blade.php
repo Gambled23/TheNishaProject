@@ -64,12 +64,17 @@ $pagina = "Productos"
                 </div>
 
                 <div class="form-group">
-                        <label class="required" for="variacions"><b>{{ trans('crud.producto.campos.variacions') }}</b></label>
+                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
                         
                         @include('Producto.partials.variations')
 
+                        @if($errors->has('variacions'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('variacions') }}
+                            </div>
+                        @endif
 
-                </div>
+                    </div>
 
                 <div class="my-4">
                     <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto block" type="submit" value="Actualizar">

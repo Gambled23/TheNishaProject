@@ -85,7 +85,7 @@ $pagina = "Productos"
                     @enderror
                     </p>
                     <div class="form-group">
-                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
                         
                         @include('Producto.partials.variations')
 

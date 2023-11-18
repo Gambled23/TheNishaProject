@@ -35,13 +35,12 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => ['required', 'min:2', 'max:100'],
+            'nombre' => ['required', 'unique:productos', 'min:2', 'max:100'],
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
-            'producto.variacions.*' => ['integer'],
-            'variacions' => 'required|array',
-            
+            'producto.variacions.*' => ['required', 'min:5'],
+            'variacions' => ['required', 'array', 'min:5'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
@@ -95,15 +94,15 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductoRequest $request, Producto $producto)
+    public function update(Request $request, Producto $producto)
     {
         $request->validate([
             'nombre' => ['required', 'min:2', 'max:100'],
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
-            'producto.variacions.*' => ['integer'],
-            'variacions' => 'required|array',     
+            'producto.variacions.*' => ['required', 'min:5'],
+            'variacions' => ['required', 'array', 'min:5'], 
         ]);
         $data = $request->all();
         $producto->update($data);

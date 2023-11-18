@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $usertype=Auth::user()->usertype;
 
-        if($usertype == '1')
+        if($usertype)
         {
             return view('admin.dashboard');
         }
