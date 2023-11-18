@@ -39,8 +39,8 @@ class ProductoController extends Controller
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
-            'producto.variacions.*' => ['required', 'min:5'],
-            'variacions' => ['required', 'array', 'min:5'],
+            'producto.variacions.*' => ['min:5'],
+            'variacions' => ['array'],
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             
         ]);
@@ -57,7 +57,10 @@ class ProductoController extends Controller
 
         $producto = Producto::create($data);
 
-        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+        if($request->variacions)
+        {
+            $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+        }
 
         session()->flash('success', 'El producto se añadió con exito');
         return redirect()->route('producto.index');
@@ -102,7 +105,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
             'producto.variacions.*' => ['required', 'min:5'],
-            'variacions' => ['required', 'array', 'min:5'], 
+            'variacions' => ['required', 'array'], 
         ]);
         $data = $request->all();
         $producto->update($data);
