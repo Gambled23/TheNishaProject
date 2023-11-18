@@ -37,7 +37,7 @@ Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('p
 
 Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
 
-Route::resource('categoria', CategoriaController::class);
+//Route::resource('categoria', CategoriaController::class);
 
 Route::get('/account', function () {
     $pedidos = Pedidos::where('user_id', Auth::id())
