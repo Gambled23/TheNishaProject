@@ -10,6 +10,11 @@ Use App\Models\User;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function redirect()
     {
         $usertype=Auth::user()->usertype;
