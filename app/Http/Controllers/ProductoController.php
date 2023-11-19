@@ -51,10 +51,10 @@ class ProductoController extends Controller
             $name = $request->nombre.'.'.'jpg';
             $image->move(public_path().'/images/', $name);  
             $data['image'] = $name;  
+            $data['imagenesTotales'] = 1;
         }
-
         $producto = Producto::create($data);
-
+        
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
         return redirect()->route('producto.index');
