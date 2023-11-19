@@ -5,9 +5,9 @@
 </style>
 
 <div data-carousel="slide">
-    <img src='{{ URL::to("/images/{$producto->nombre}.jpg") }}' data-carousel-item="active" alt="Image 1">
-    <img src='{{ URL::to("/images/{$producto->nombre}1.jpg") }}' class="hidden" alt="Image 2">
-    <img src='image3.jpg' class="hidden" alt="Image 3">
+    @for ($i = 0; $i < $producto->imagenesTotales; $i++)
+        <img src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' class="{{ $i == 0 ? '' : 'hidden' }}" alt="Image {{ $i + 1 }}">
+    @endfor
 </div>
 <button data-carousel-prev>Previous</button>
 <button data-carousel-next>Next</button>
@@ -21,27 +21,23 @@
     // Add event listeners to the buttons
     nextButton.addEventListener('click', function() {
         // Get the current active image
-        let activeImage = carousel.querySelector('[data-carousel-item="active"]');
+        let activeImage = carousel.querySelector('img:not(.hidden)');
         // Get the next image
         let nextImage = activeImage.nextElementSibling || carousel.firstElementChild;
 
         // Change the active image
-        activeImage.removeAttribute('data-carousel-item');
         activeImage.classList.add('hidden');
-        nextImage.setAttribute('data-carousel-item', 'active');
         nextImage.classList.remove('hidden');
     });
 
     prevButton.addEventListener('click', function() {
         // Get the current active image
-        let activeImage = carousel.querySelector('[data-carousel-item="active"]');
+        let activeImage = carousel.querySelector('img:not(.hidden)');
         // Get the previous image
         let prevImage = activeImage.previousElementSibling || carousel.lastElementChild;
 
         // Change the active image
-        activeImage.removeAttribute('data-carousel-item');
         activeImage.classList.add('hidden');
-        prevImage.setAttribute('data-carousel-item', 'active');
         prevImage.classList.remove('hidden');
     });
 </script>

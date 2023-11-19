@@ -9,7 +9,7 @@
 
                 <div class="w-full md:w-1/2 md:pr-4">
                     <label class="h-full shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white flex justify-center items-center cursor-pointer">
-                        <input type="file" class="hidden" name="image" id="image" onchange="updateFileName(this)">
+                        <input type="file" class="hidden" name="image[]" id="image" onchange="updateFileName(this)" multiple>
                         @error('image')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -22,8 +22,8 @@
 
                     <script>
                         function updateFileName(input) {
-                            var fileName = input.files[0].name;
-                            document.getElementById('fileName').textContent = fileName;
+                            var fileNames = Array.from(input.files).map(file => file.name).join(', ');
+                            document.getElementById('fileName').textContent = fileNames;
                         }
                     </script>
                 </div>
