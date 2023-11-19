@@ -2,16 +2,29 @@
     .hidden {
         display: none;
     }
+    .carousel-container {
+        width: 100%; /* Adjust as needed */
+        height: 100%; /* Adjust as needed */
+        overflow: hidden;
+        border-radius: 1px; /* Adjust as needed */
+    }
+    .carousel-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 25px; /* Adjust as needed */
+    }
 </style>
 
-<div data-carousel="slide">
+<div class="carousel-container" data-carousel="slide">
     @for ($i = 0; $i < $producto->imagenesTotales; $i++)
         <img src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' class="{{ $i == 0 ? '' : 'hidden' }}" alt="Image {{ $i + 1 }}">
     @endfor
 </div>
-<button data-carousel-prev>Previous</button>
-<button data-carousel-next>Next</button>
-
+<div class="flex justify-center mt-4">
+    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mr-2" data-carousel-prev title="Anterior imagen">🡠</button>
+    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded ml-2" data-carousel-next title="Siguiente imagen">🡢</button>
+</div>
 <script>
     // Select the carousel and the buttons
     let carousel = document.querySelector('[data-carousel="slide"]');
