@@ -20,7 +20,7 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
-            $table->string('tiempo_total')->default('no disponible');
+            $table->string('tiempo_total')->default('no disponible')->nullable();
             
             $table->timestamps();
         });

@@ -83,7 +83,7 @@
                 </div>
                 <div class="flex justify-between items-center my-5">
                     <div class="font-semibold text-2xl">
-                        <a href="tienda">
+                        <a href= "{{url('tienda')}}">
                             <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Seguir navegando</button>
                         </a>
                     </div>

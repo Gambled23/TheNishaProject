@@ -41,8 +41,10 @@
             </div>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if ( Auth::user() )
+
                 <a href="{{ route('account') }}">
                     <span class="text-gray-700">{{ Auth::user()->name }}</span> 
+
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 @else
                     <a href="{{ route('login') }}">

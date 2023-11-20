@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MassDestroyProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Producto;
 use App\Models\Variacion;
@@ -36,10 +35,12 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => ['required', 'min:2', 'max:100'],
+            'nombre' => ['required', 'unique:productos', 'min:2', 'max:100'],
             'descripcion' => ['required', 'min:5', 'max:500'],
             'precio' => 'required|numeric',
             'disponibles' => 'required|numeric',
+            'producto.variacions.*' => ['min:5'],
+            'variacions' => ['array'],
             'image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
@@ -57,9 +58,14 @@ class ProductoController extends Controller
             }
         }
         $producto = Producto::create($data);
-        
-        $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
+        if($request->variacions)
+        {
+            $producto->variacions()->sync($this->mapVariacions($data['variacions']));
+        }
+
+
+        session()->flash('success', 'El producto se añadió con exito');
         return redirect()->route('producto.index');
     }
 
@@ -94,16 +100,22 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductoRequest $request, Producto $producto)
+    public function update(Request $request, Producto $producto)
     {
-
-        $data = $request->validated();
-
+        $request->validate([
+            'nombre' => ['required', 'min:2', 'max:100'],
+            'descripcion' => ['required', 'min:5', 'max:500'],
+            'precio' => 'required|numeric',
+            'disponibles' => 'required|numeric',
+            'producto.variacions.*' => ['required', 'min:5'],
+            'variacions' => ['required', 'array'], 
+        ]);
+        $data = $request->all();
         $producto->update($data);
-
-        //Producto::where('id', $producto->id)->update($request->except('_token', '_method'));
+        
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
+        session()->flash('success', 'El producto se modificó con exito');
         return redirect()->route('producto.index'); 
     }
 
@@ -114,18 +126,13 @@ class ProductoController extends Controller
         });
     }
 
-    public function massDestroy(MassDestroyProductoRequest $request){
-        Producto::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Producto $producto)
     {
         $producto->delete();
+        session()->flash('success', 'El producto se elimino con exito');
         return redirect()->route('producto.index');
     }
 }

@@ -1,7 +1,17 @@
-@extends ('layouts.main')
+@extends ('layouts.admin')
 @section('body')
-<body class="flex justify-center">
-    <div class="w-full max-w-xs">
+
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+
+
+<?php
+$pagina = "Productos"
+?>
+
+<x-admin.upper-bar :$pagina/>
+
+<body class="flex justify-center items-center h-screen">
+    <div class="w-full max-w-xs mx-auto">
         
         <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR PRODUCTO</h1>
 
@@ -54,16 +64,22 @@
                 </div>
 
                 <div class="form-group">
-                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
                         
                         @include('Producto.partials.variations')
 
+                        @if($errors->has('variacions'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('variacions') }}
+                            </div>
+                        @endif
 
-                </div>
+                    </div>
 
-                <div class="mb-4">
-                    <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Actualizar">
+                <div class="my-4">
+                    <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto block" type="submit" value="Actualizar">
                 </div>
             </form>
     </div>
+</body>
 @endsection

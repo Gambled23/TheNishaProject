@@ -10,11 +10,16 @@ Use App\Models\User;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function redirect()
     {
         $usertype=Auth::user()->usertype;
 
-        if($usertype == '1')
+        if($usertype)
         {
             return view('admin.dashboard');
         }

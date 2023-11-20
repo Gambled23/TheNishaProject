@@ -1,5 +1,16 @@
-@extends ('layouts.main')
+@extends ('layouts.admin')
 @section('body')
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+
+
+<?php
+$pagina = "Productos"
+?>
+
+<x-admin.upper-bar :$pagina/>
+
+
+<div class="p-6">
 <form method="POST" action="{{ route('producto.store') }}" enctype="multipart/form-data">
     <div class="w-full">
         <div class="flex flex-row justify-center"> <!-- Div de parte superior -->
@@ -74,7 +85,7 @@
                     @enderror
                     </p>
                     <div class="form-group">
-                        <label class="required" for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
                         
                         @include('Producto.partials.variations')
 
@@ -95,6 +106,7 @@
         </button>
     </div>
 </form>
+</main>
 
 <style>
     @media (min-width: 768px) {

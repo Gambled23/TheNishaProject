@@ -19,6 +19,6 @@ class Producto extends Model
     public function variacions()
     {
         return $this->belongsToMany(Variacion::class)
-            ->withPivot(['tiempo_total']);
+            ->withPivot('tiempo_total');
     }
 }
