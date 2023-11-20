@@ -25,8 +25,13 @@
         <p class="text-gray-700">¿Qué dicen? ¿Objetivo logrado?</p>
     </div>
 </div>
+
+<br><br>
 <div class="flex justify-center text-2xl p-4">
     <p class="text-gray-700">Esperamos que disfrutes de tu visita!</p>
+</div>
+<div class="flex justify-center p-4">
+    <x-application-mark></x-application-mark>
 </div>
 
 @endsection
