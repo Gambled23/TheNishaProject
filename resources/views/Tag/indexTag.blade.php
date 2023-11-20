@@ -9,9 +9,10 @@ $pagina = "Tags"
 
 <x-admin.upper-bar :$pagina/>
 
+
 <div class="flex flex-col">
     <h1 class="text-center mb-10 text-2xl font-mono"><br>Tags</h1>
-
+    <a href="{{ route('tag.create') }}" class="px-4 py-2 mb-4">Crear nuevo producto</a>
     @if ($message = Session::get('success'))
         <div class="p-4 mb-3 bg-blue-400 rounded">
             <p class="text-white">{{ $message }}</p>

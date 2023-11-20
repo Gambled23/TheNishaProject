@@ -7,7 +7,7 @@
 
     <x-admin.upper-bar :$pagina/>
 
-    <div class="w-full max-w-xs">
+    <div class="w-full max-w-xs mx-auto"> <!-- Added mx-auto class -->
         <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR TAG</h1>
 
         <form method="POST" action="{{ route('tag.update', $tag) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
