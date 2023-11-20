@@ -10,7 +10,12 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        try {
+            $this->middleware('auth');
+        } catch (\Exception $e) {
+            dd("No se pudo conectar a la base de datos. Intente de nuevo en unos minutos.");
+        }
+        
     }
     /**
      * Display a listing of the resource.

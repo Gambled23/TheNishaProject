@@ -78,6 +78,26 @@ Route::get('/tienda', function () {
     return view('tienda', ['productos' => $productos]);
 })->name('tienda');
 
+
+#Route::resource('producto', ProductoController::class);
+Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
+Route::get('/producto/create', [ProductoController::class, 'create'])->name('producto.create');
+Route::get('producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
+Route::put('producto/{producto}', [ProductoController::class, 'update'])->name('producto.update');
+Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
+Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('producto.show');
+
+Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
+
+//Route::resource('categoria', CategoriaController::class);
+
+Route::get('/account', function () {
+    $pedidos = Pedidos::where('user_id', Auth::id())
+                      ->where('pagado', 1)
+                      ->get();
+    return view('indexUser', ['pedidos' => $pedidos]);
+})->name('account');
+
 Route::get('/tests', function () {
     $제품 = producto::all();
     return view('tests', ['제품' => $제품]);
