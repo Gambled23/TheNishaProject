@@ -77,7 +77,12 @@ Route::get('/tienda', function () {
     $productos = Producto::all();
     return view('tienda', ['productos' => $productos]);
 })->name('tienda');
-
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 #Route::resource('producto', ProductoController::class);
 Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');

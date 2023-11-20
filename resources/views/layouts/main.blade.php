@@ -37,7 +37,7 @@ bg-slate-50
 relative">
     <x-navbar/>
     <!-- Main card-->
-    <div class=" bg-white mx-64 my-8 rounded-xl shadow-md pt-4">
+    <div class=" bg-white mx-64 my-8 rounded-xl shadow-md pt-4 py-4 md:py-8">
         @yield('body')
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>

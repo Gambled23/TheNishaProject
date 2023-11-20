@@ -21,11 +21,11 @@
                     <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('productos.index')">
                         {{ __('Categorías') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        {{ __('Contacto') }}
+                    <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
+                        {{ __('FAQ') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        {{ __('About Nisha') }}
+                    <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                        {{ __('Sobre nosotros') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -77,11 +77,11 @@
             <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('productos.index')">
                 {{ __('Categorías') }}
             </x-nav-link>
-            <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                {{ __('Contacto') }}
+            <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
+                {{ __('FAQ') }}
             </x-nav-link>
-            <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                {{ __('About Nisha') }}
+            <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                {{ __('Sobre nosotros') }}
             </x-nav-link>
             <x-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')" >
                 <span class="text-gray-700">{{ Cart::getTotalQuantity() }} articulos en carrito</span> 
