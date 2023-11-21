@@ -66,7 +66,7 @@ class ProductoController extends Controller
 
 
         session()->flash('success', 'El producto se añadió con exito');
-        return redirect()->route('producto.index');
+        return redirect()->route('admin.producto.index');
     }
 
     /**
@@ -116,7 +116,7 @@ class ProductoController extends Controller
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
         session()->flash('success', 'El producto se modificó con exito');
-        return redirect()->route('producto.index'); 
+        return redirect()->route('admin.producto.index'); 
     }
 
     private function mapVariacions($variacions)
@@ -133,6 +133,6 @@ class ProductoController extends Controller
     {
         $producto->delete();
         session()->flash('success', 'El producto se elimino con exito');
-        return redirect()->route('producto.index');
+        return redirect()->route('admin.producto.index');
     }
 }

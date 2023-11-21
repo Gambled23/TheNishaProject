@@ -11,7 +11,7 @@ $pagina = "Productos"
 
 
 <div class="p-6">
-<form method="POST" action="{{ route('producto.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.producto.store') }}" enctype="multipart/form-data">
     <div class="w-full">
         <div class="flex flex-row justify-center"> <!-- Div de parte superior -->
 
@@ -85,7 +85,7 @@ $pagina = "Productos"
                     @enderror
                     </p>
                     <div class="form-group">
-                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        <label for="variacions">Variaciones</label>
                         
                         @include('Producto.partials.variations')
 

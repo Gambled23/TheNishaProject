@@ -1,13 +1,14 @@
 <?php
 
+use App\Models\Tag;
 use App\Models\Pedidos;
-use App\Models\Producto;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -15,8 +16,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VariacionController;
 use App\Http\Controllers\productoCategoriaController;
-use App\Models\Tag;
 
 Route::get('/redirect', [HomeController::class, 'redirect']);
 
@@ -33,6 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
         'as' =>'admin.',
      ], function() {
             //reminder de que debi diseñar mwjor esto
+            Route::get('producto/create', [ProductoController::class, 'create'])->name('producto.create');
+            Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
+            Route::get('producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
+            Route::put('producto/{producto}', [ProductoController::class, 'update'])->name('producto.update');
+            Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
+            Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');            
      });
 
     Route::group([
@@ -81,27 +88,24 @@ Route::get('/tienda', function () {
     $productos = Producto::all();
     return view('tienda', ['productos' => $productos, 'categorias' => $categorias]);
 })->name('tienda');
+
+
 Route::get('/productos/categoria/{id}', [productoCategoriaController::class, 'showByCategory'])->name('productos.categoria');
+
 Route::get('/categorias', function () {
     $categorias = Tag::all();
     return view('categorias', ['categorias' => $categorias]);
 })->name('categorias');
+
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-#Route::resource('producto', ProductoController::class);
-Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
-Route::get('/producto/create', [ProductoController::class, 'create'])->name('producto.create');
-Route::get('producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
-Route::put('producto/{producto}', [ProductoController::class, 'update'])->name('producto.update');
-Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('producto.show');
-
-Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
 
 //Route::resource('categoria', CategoriaController::class);
 
@@ -134,5 +138,6 @@ Route::any('/search',function(){
 Route::post('/pdf', [DomPdfController::class, 'getPdf'])->name('pdf');
 
 Route::resource('user', UserController::class)->middleware('auth');
-Route::resource('producto', ProductoController::class);
+
+Route::resource('variacion', VariacionController::class);
 Route::resource('tag', TagController::class);

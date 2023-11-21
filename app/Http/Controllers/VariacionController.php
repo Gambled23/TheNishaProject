@@ -12,7 +12,9 @@ class VariacionController extends Controller
      */
     public function index()
     {
-        //
+        $variacions = Variacion::all();
+
+        return view('Variacion.indexVariacion', compact('variacions'));
     }
 
     /**
@@ -20,7 +22,8 @@ class VariacionController extends Controller
      */
     public function create()
     {
-        //
+        $variacions = Variacion::all();
+        return view('Variacion.createVariacion', compact('variacions'));
     }
 
     /**
@@ -28,7 +31,14 @@ class VariacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'min:2', 'max:30']
+        ]);
+
+        $variacion = Variacion::create($request->all());
+
+        session()->flash('success', 'La Variación se creó con éxito');
+        return redirect()->route('variacion.index');
     }
 
     /**
@@ -36,7 +46,7 @@ class VariacionController extends Controller
      */
     public function show(Variacion $variacion)
     {
-        //
+        return view('Variacion.showVariacion', compact('variacion'));
     }
 
     /**
@@ -44,7 +54,7 @@ class VariacionController extends Controller
      */
     public function edit(Variacion $variacion)
     {
-        //
+        return view('Variacion.editVariacion', compact('variacion'));
     }
 
     /**
@@ -52,7 +62,14 @@ class VariacionController extends Controller
      */
     public function update(Request $request, Variacion $variacion)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => ['required', 'min:2', 'max:30']
+        ]);
+
+        Variacion::where('id', $variacion->id)->update($request->except('_token', '_method'));
+
+        session()->flash('success', 'La variacion se actualizó con éxito');
+        return redirect()->route('variacion.index');
     }
 
     /**
@@ -60,6 +77,8 @@ class VariacionController extends Controller
      */
     public function destroy(Variacion $variacion)
     {
-        //
+        $variacion->delete();
+        session()->flash('success', 'La variación se eliminó con exito');
+        return redirect()->route('variacion.index');
     }
 }

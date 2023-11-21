@@ -12,7 +12,7 @@ $pagina = "Productos"
 
 <div class="flex flex-col">
     <h1 class="text-center mb-10 text-2xl font-mono"><br>Productos</h1>
-    <a href="{{ route('producto.create') }}" class="px-4 py-2 mb-4">Crear nuevo producto</a>
+    <a href="{{ route('admin.producto.create') }}" class="px-4 py-2 mb-4">Crear nuevo producto</a>
     
     @if ($message = Session::get('success'))
         <div class="p-4 mb-3 bg-blue-400 rounded">
@@ -37,17 +37,17 @@ $pagina = "Productos"
                         
                             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                                 
-                                <td class="whitespace-nowrap px-6 py-4 font-medium"><a href ="{{ route('producto.show', $producto)}}">{{ $producto->nombre }}</a></td> 
+                                <td class="whitespace-nowrap px-6 py-4 font-medium"><a href ="{{ route('producto.show', $producto)}}">{{ $producto->nombre }}</a></td> {{--aqui tengo q cambiar por otro show de nuevo controlador--}}
                                 <td class="whitespace-nowrap px-6 py-4 font-medium max-w-[200px] overflow-hidden overflow-ellipsis">{{ $producto->descripcion }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">${{ $producto->precio }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $producto->disponibles }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium"> <button type="button" class="text-black bg-white-700 hover:bg-gray-200 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 15L4 16V20H8L14 14M18 10L21 7L17 3L14 6M18 10L17 11M18 10L14 6M14 6L7.5 12.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>  <a href ="{{ route('producto.edit', $producto)}}">Editar</button>
+                                </svg>  <a href ="{{ route('admin.producto.edit', $producto)}}">Editar</button>
                                 </td>
 
-                                <td><form action="{{ route('producto.destroy', $producto )}}" method="POST">
+                                <td><form action="{{ route('admin.producto.destroy', $producto )}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-black bg-white-700 hover:bg-gray-200 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

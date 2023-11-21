@@ -15,7 +15,7 @@ $pagina = "Productos"
         
         <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR PRODUCTO</h1>
 
-            <form method="POST" action="{{ route('producto.update', [$producto->id]) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.producto.update', [$producto->id]) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
                 @csrf <!--cross site resource forgery-->
                 @method('PUT') <!--Apegado a rest-->
                 <div class="mb-4">
