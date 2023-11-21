@@ -12,7 +12,7 @@ $pagina = "Tags"
 <div class="w-full max-w-xs">
         <h1 class="text-center mb-10 text-2xl font-mono"><br>FORMULARIO DE TAG</h1>
 
-            <form method="POST" action="{{ route('tag.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST" action="{{ route('admin.tag.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf <!--cross site resource forgery-->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>

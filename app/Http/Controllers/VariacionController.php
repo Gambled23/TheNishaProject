@@ -38,7 +38,7 @@ class VariacionController extends Controller
         $variacion = Variacion::create($request->all());
 
         session()->flash('success', 'La Variación se creó con éxito');
-        return redirect()->route('variacion.index');
+        return redirect()->route('admin.variacion.index');
     }
 
     /**
@@ -69,7 +69,7 @@ class VariacionController extends Controller
         Variacion::where('id', $variacion->id)->update($request->except('_token', '_method'));
 
         session()->flash('success', 'La variacion se actualizó con éxito');
-        return redirect()->route('variacion.index');
+        return redirect()->route('admin.variacion.index');
     }
 
     /**
@@ -79,6 +79,6 @@ class VariacionController extends Controller
     {
         $variacion->delete();
         session()->flash('success', 'La variación se eliminó con exito');
-        return redirect()->route('variacion.index');
+        return redirect()->route('admin.variacion.index');
     }
 }

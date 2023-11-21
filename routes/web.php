@@ -33,13 +33,19 @@ Route::group(['middleware' => 'auth'], function() {
         'middleware' => 'usertype', 
         'as' =>'admin.',
      ], function() {
-            //reminder de que debi diseñar mwjor esto
+            //PRODUCTO
             Route::get('producto/create', [ProductoController::class, 'create'])->name('producto.create');
             Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
             Route::get('producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
             Route::put('producto/{producto}', [ProductoController::class, 'update'])->name('producto.update');
             Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
-            Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');            
+            Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store'); 
+            
+            //VARIACION
+            Route::resource('variacion', VariacionController::class);
+
+            //TAGS
+            Route::resource('tag', TagController::class);
      });
 
     Route::group([
@@ -138,6 +144,3 @@ Route::any('/search',function(){
 Route::post('/pdf', [DomPdfController::class, 'getPdf'])->name('pdf');
 
 Route::resource('user', UserController::class)->middleware('auth');
-
-Route::resource('variacion', VariacionController::class);
-Route::resource('tag', TagController::class);

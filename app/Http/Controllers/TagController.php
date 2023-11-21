@@ -43,7 +43,7 @@ class TagController extends Controller
         $tag->productos()->attach($request->producto_id);
 
         session()->flash('success', 'El Tag se creo con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -74,7 +74,7 @@ class TagController extends Controller
         Tag::where('id', $tag->id)->update($request->except('_token', '_method'));
 
         session()->flash('success', 'El Tag se actualizo con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -84,6 +84,6 @@ class TagController extends Controller
     {
         $tag->delete();
         session()->flash('success', 'El tag se eliminó con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 }
