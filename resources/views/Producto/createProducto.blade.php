@@ -94,8 +94,14 @@ $pagina = "Productos"
                                 {{ $errors->first('variacions') }}
                             </div>
                         @endif
-
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="required" for="ingredients">Tags</label>
+
+                        @include('Producto.partials.tags')
+                    </div>
+
                 </div>
             </div>
         </div>

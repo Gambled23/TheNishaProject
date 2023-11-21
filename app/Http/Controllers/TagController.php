@@ -40,7 +40,7 @@ class TagController extends Controller
 
         $tag = Tag::create($request->all());
 
-        $tag->productos()->attach($request->producto_id);
+        //$tag->productos()->attach($request->producto_id);
 
         session()->flash('success', 'El Tag se creo con exito');
         return redirect()->route('admin.tag.index');

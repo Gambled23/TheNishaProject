@@ -25,14 +25,6 @@ $pagina = "Tags"
                     </div>
                     @enderror
 
-                    <select name="producto_id[]" multiple>
-                        @foreach ($products as $pro)
-                            <option value="{{ $pro->id }}" @selected( array_search($pro->id, old('producto_id') ?? []) !== false )>
-                                {{ $pro->nombre }}
-                            </option>
-                        @endforeach
-                    </select>
-
                 </div>
                 <div class="mb-4">
                     <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Enviar">
