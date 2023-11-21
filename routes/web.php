@@ -48,6 +48,10 @@ Route::group(['middleware' => 'auth'], function() {
 
             //TAGS
             Route::resource('tag', TagController::class);
+
+            //ARCHIVE (FORCE AND RESTORE)
+            Route::get('/archive', [UserController::class, 'archive']);
+
      });
 
     Route::group([
@@ -59,7 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
                 $pedidos = Pedidos::where('user_id', Auth::id())
                                 ->where('pagado', 1)
                                 ->get();
-                return view('indexUser', ['pedidos' => $pedidos]);
+                return view('User/indexUser', ['pedidos' => $pedidos]);
             })->name('account');
 
             //Paypal
@@ -85,6 +89,10 @@ Route::group(['middleware' => 'auth'], function() {
             })->name('entrega');
             
         });
+
+        Route::resource('user', UserController::class);
+        Route::delete('/user/{user}', [UserController::class, 'destroy'])->withTrashed();
+        Route::post('/user/{user}/restore', [UserController::class, 'restore'])->withTrashed();
  });
 
 
@@ -145,4 +153,3 @@ Route::any('/search',function(){
 
 Route::post('/pdf', [DomPdfController::class, 'getPdf'])->name('pdf');
 
-Route::resource('user', UserController::class)->middleware('auth');

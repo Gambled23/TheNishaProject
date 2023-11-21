@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('indexUser', ['users' => $users]);
+        return view('User/indexUser', ['users' => $users]);
     }
 
     /**
@@ -71,8 +71,27 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if($user->trashed()) {
+            $user->forceDelete();
+            return redirect()->to('/admin/archive');
+        }
 
         $user->delete();
         return redirect()->to('/tienda');
+    }
+
+    public function archive()
+    {
+        $users = User::onlyTrashed()
+            ->orderBy('deleted_at', 'desc')->get();
+
+        return view('User/archiveUser', ['users' => $users]);
+    }
+
+    public function restore(User $user, Request $request)
+    {
+        $user->restore();
+
+        return redirect()->to('/admin/archive');
     }
 }

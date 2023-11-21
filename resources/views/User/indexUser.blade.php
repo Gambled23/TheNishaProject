@@ -92,7 +92,7 @@ $user = Auth::user(); ?>
         </form>
     </div>
 
-    <form action="{{route('user.destroy', $user)}}" method="POST" class="flex justify-center">
+    <form action="/user/{{ $user->id }}" method="POST" class="flex justify-center">
         @csrf
         @method('DELETE')
         <button class="bg-red-600 text-white rounded-lg px-6 py-2 hover:bg-red-700 transition ease-in-out delay-50" onclick="" type="submit">Eliminar cuenta</button>
