@@ -35,7 +35,7 @@
         </li>
         <li>
             <h3 class="text-lg font-semibold">¿Cómo saber cuando está listo mi pedido?</h3>
-            <p class="text-gray-600"><b>Nisha</b> se comunicará contigo mediante el correo electronico que usaste para registrarte.<br>Además, es posible consultar el estado de tu pedido desde tu <a href="{{ route('account') }}" class="text-violet-800 hover:text-violet-950">cuenta</a>.</p>
+            <p class="text-gray-600"><b>Nisha</b> se comunicará contigo mediante el correo electronico que usaste para registrarte.<br>Además, es posible consultar el estado de tu pedido desde tu <a href="{{ route('user.account') }}" class="text-violet-800 hover:text-violet-950">cuenta</a>.</p>
         </li>
         <li>
             <h3 class="text-lg font-semibold">¿Es posible hacer envíos nacionales?</h3>

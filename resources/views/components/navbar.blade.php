@@ -33,7 +33,7 @@
             <!--Iconos derecha-->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <a href="{{ route('cart.list') }}" class="flex items-center space-x-1">
+                    <a href="{{ route('user.cart.list') }}" class="flex items-center space-x-1">
                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
                         <span class="text-gray-700">{{ Cart::getTotalQuantity()}}</span> 
                     </a>
@@ -42,15 +42,17 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if ( Auth::user() )
 
-                <a href="{{ route('account') }}">
+                <a href="{{ route('user.account') }}">
                     <span class="text-gray-700">{{ Auth::user()->name }}</span> 
 
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
+                </a>
                 @else
                     <a href="{{ route('login') }}">
-                    Iniciar sesión
+                        Iniciar sesión
+                    </a>
                 @endif  
-                </a>
+                
             </div> 
         </div>
     </div>
@@ -83,18 +85,18 @@
             <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                 {{ __('Sobre nosotros') }}
             </x-nav-link>
-            <x-nav-link href="{{ route('cart.list') }}" :active="request()->routeIs('cart.list')" >
+            <x-nav-link href="{{ route('user.cart.list') }}" :active="request()->routeIs('cart.list')" >
                 <span class="text-gray-700">{{ Cart::getTotalQuantity() }} articulos en carrito</span> 
                 <i class="fa-solid fa-cart-shopping fa-xl" style="color: #4338ca;"></i>
             </x-nav-link>
             @if ( Auth::user() )
-                <x-nav-link href="{{ route('account') }}" :active="request()->routeIs('account')">
+                <x-nav-link href="{{ route('user.account') }}" :active="request()->routeIs('account')">
                     <span class="text-gray-700">{{ Auth::user()->name }}</span> 
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 </x-nav-link>
             @else
                 <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">                  
-                    <span class="text-gray-700">{{ _('Iniciar sesión')}}</span> 
+                    <span class="text-gray-700">{{ __('Iniciar sesión')}}</span> 
                     <i class="fa-solid fa-user fa-xl pr-10" style="color: #4338ca;"></i>
                 </x-nav-link>
             @endif

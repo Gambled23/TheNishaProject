@@ -29,7 +29,7 @@ class CartController extends Controller
             )
         ]);
         session()->flash('success', 'El articulo se añadió con exito');
-        return redirect()->route('cart.list');
+        return redirect()->route('user.cart.list');
     }
 
     public function updateCart(Request $request)
@@ -44,20 +44,20 @@ class CartController extends Controller
             ]
         );
         session()->flash('success', 'El articulo fue actualizado correctamente');
-        return redirect()->route('cart.list');
+        return redirect()->route('user.cart.list');
     }
 
     public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
             session()->flash('success', 'Se ha removido el articulo');
-        return redirect()->route('cart.list');
+        return redirect()->route('user.cart.list');
     }
 
     public function clearAllCart()
     {
         \Cart::clear();
         session()->flash('success', 'Carrito vacio !');
-        return redirect()->route('cart.list');
+        return redirect()->route('user.cart.list');
     }
 }

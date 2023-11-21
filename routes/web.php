@@ -25,6 +25,7 @@ return view('home', /*['productos' => $productos]*/);
 })->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
+
     Route::group([
         'prefix' => 'admin',
         'middleware' => 'usertype', 
@@ -38,34 +39,35 @@ Route::group(['middleware' => 'auth'], function() {
         'as' =>'user.',
     ],  function() {
 
-        Route::get('/account', function () {
-            $pedidos = Pedidos::where('user_id', Auth::id())
-            ->where('pagado', 1)
-            ->get();
-            return view('indexUser', ['pedidos' => $pedidos]);
+            Route::get('/account', function () {
+                $pedidos = Pedidos::where('user_id', Auth::id())
+                                ->where('pagado', 1)
+                                ->get();
+                return view('indexUser', ['pedidos' => $pedidos]);
             })->name('account');
-        });
 
-        //Paypal
-        Route::controller(PaymentController::class)
-        ->prefix('paypal')
-        ->group(function () {
-            Route::view('payment', 'paypal.index')->name('create.payment');
-            Route::post('handle-payment', 'handlePayment')->name('make.payment');
-            Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
-            Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+            //Paypal
+            Route::controller(PaymentController::class)
+            ->prefix('paypal')
+            ->group(function () {
+                Route::view('payment', 'paypal.index')->name('create.payment');
+                Route::post('handle-payment', 'handlePayment')->name('make.payment');
+                Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+                Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+            });
 
-        //Carrito
-        Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-        Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-        Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-        Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-        Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+            //Carrito
+            Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+            Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+            Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+            Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+            Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-        Route::post('/compra', function (Request $request) {
-            $data = $request->all();
-            return view('confirmar_compra', ['data' => $data]);
-        })->name('entrega');
+            Route::post('/compra', function (Request $request) {
+                $data = $request->all();
+                return view('confirmar_compra', ['data' => $data]);
+            })->name('entrega');
+            
         });
  });
 
@@ -95,13 +97,6 @@ Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('p
 Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
 
 //Route::resource('categoria', CategoriaController::class);
-
-Route::get('/account', function () {
-    $pedidos = Pedidos::where('user_id', Auth::id())
-                      ->where('pagado', 1)
-                      ->get();
-    return view('indexUser', ['pedidos' => $pedidos]);
-})->name('account');
 
 Route::get('/tests', function () {
     $제품 = producto::all();

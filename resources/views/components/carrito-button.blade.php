@@ -1,6 +1,6 @@
 <div class="group">
 
-    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data" class="flex justify-end">
+    <form action="{{ route('user.cart.store') }}" method="POST" enctype="multipart/form-data" class="flex justify-end">
                         @csrf
                         <input type="hidden" value="{{ $producto->id }}" name="id">
                         <input type="hidden" value="{{ $producto->nombre }}" name="name">

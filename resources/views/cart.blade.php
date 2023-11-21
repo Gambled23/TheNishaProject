@@ -45,7 +45,7 @@
                                 <td class="justify-center mt-6 md:justify-end md:flex">
                                     <div class="h-10 w-28">
                                         <div class="relative flex flex-row w-full h-8">
-                                            <form action="{{ route('cart.update') }}" method="POST">
+                                            <form action="{{ route('user.cart.update') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id}}" class="">
                                                 <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" class="w-full text-center h-10 text-gray-800 outline-none rounded border border-gray-600 py-3" />
@@ -60,7 +60,7 @@
                                     </span>
                                 </td>
                                 <td class="hidden text-right md:table-cell">
-                                    <form action="{{ route('cart.remove') }}" method="POST">
+                                    <form action="{{ route('user.cart.remove') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{ $item->id }}" name="id">
                                         <button class="transition duration-150 ease-in-out px-3 py-1 text-white bg-red-600 hover:bg-red-800  shadow rounded-full">x</button>
@@ -73,7 +73,7 @@
                     <div class="flex justify-between items-center my-5">
                         
                         <div>
-                            <form action="{{ route('cart.clear') }}" method="POST">
+                            <form action="{{ route('user.cart.clear') }}" method="POST">
                                 @csrf
                                 <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Limpiar carrito</button>
                             </form>
@@ -87,7 +87,7 @@
                             <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Seguir navegando</button>
                         </a>
                     </div>
-                    <form method="post" action="{{ route('make.payment') }}">
+                    <form method="post" action="{{ route('user.make.payment') }}">
                         @csrf
                         <!-- DEPOSITE AKI VALIDACIONES PARA Q SE TENGA Q LOGEAR -->
                         <!--Han sido depositadas en las rutas 🫡-->
@@ -114,7 +114,7 @@
                 <div class="font-semibold text-2xl">
                     <h4>Aun no has agregado nada al carrito :(</h4>
                     <br><br>
-                    <a href="tienda">
+                    <a href="{{url('tienda')}}">
                         <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-gray-800">Comprar ahora</button>
                     </a>
                 </div>

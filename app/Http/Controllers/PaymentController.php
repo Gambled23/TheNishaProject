@@ -48,8 +48,8 @@ class PaymentController extends Controller
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
-                "return_url" => route('success.payment'),
-                "cancel_url" => route('cancel.payment'),
+                "return_url" => route('user.success.payment'),
+                "cancel_url" => route('user.cancel.payment'),
             ],
             "purchase_units" => [
                 0 => [
