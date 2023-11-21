@@ -2,7 +2,7 @@
 @section('body')
 
 <div class="grid grid-cols-3">
-    <h1 class="text-2xl font-medium text-gray-900 pt-6 mx-6" inline>Todos los productos</h1>
+    <h1 class="text-2xl font-medium text-gray-900 pt-6 mx-6" inline>Resultados de la busqueda</h1>
     <x-search-bar/>
 </div>
 
