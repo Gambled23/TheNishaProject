@@ -15,7 +15,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductoController;
-
+use App\Http\Controllers\productoCategoriaController;
+use App\Models\Tag;
 
 Route::get('/redirect', [HomeController::class, 'redirect']);
 
@@ -74,9 +75,15 @@ Route::group(['middleware' => 'auth'], function() {
 //RUTAS CON ACCESO EN GENERAL
 
 Route::get('/tienda', function () {
+    $categorias = Tag::all();
     $productos = Producto::all();
-    return view('tienda', ['productos' => $productos]);
+    return view('tienda', ['productos' => $productos, 'categorias' => $categorias]);
 })->name('tienda');
+Route::get('/productos/categoria/{id}', [productoCategoriaController::class, 'showByCategory'])->name('productos.categoria');
+Route::get('/categorias', function () {
+    $categorias = Tag::all();
+    return view('categorias', ['categorias' => $categorias]);
+})->name('categorias');
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');

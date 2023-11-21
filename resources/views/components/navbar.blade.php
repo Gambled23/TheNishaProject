@@ -18,9 +18,6 @@
                     <x-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                         {{ __('Tienda') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('productos.index')">
-                        {{ __('Categorías') }}
-                    </x-nav-link>
                     <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
                         {{ __('FAQ') }}
                     </x-nav-link>
@@ -73,9 +70,6 @@
             </x-nav-link>
             <x-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                 {{ __('Tienda') }}
-            </x-nav-link>
-            <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('productos.index')">
-                {{ __('Categorías') }}
             </x-nav-link>
             <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
                 {{ __('FAQ') }}
