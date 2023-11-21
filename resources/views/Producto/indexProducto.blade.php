@@ -19,6 +19,7 @@ $pagina = "Productos"
             <p class="text-white">{{ $message }}</p>
         </div>
     @endif
+    
                 
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -37,7 +38,7 @@ $pagina = "Productos"
                         
                             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                                 
-                                <td class="whitespace-nowrap px-6 py-4 font-medium"><a href ="{{ route('producto.show', $producto)}}">{{ $producto->nombre }}</a></td> {{--aqui tengo q cambiar por otro show de nuevo controlador--}}
+                                <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $producto->nombre }}</td> {{--aqui tengo q cambiar por otro show de nuevo controlador, <a href ="{{ route('producto.show', $producto)}}"> --}}
                                 <td class="whitespace-nowrap px-6 py-4 font-medium max-w-[200px] overflow-hidden overflow-ellipsis">{{ $producto->descripcion }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">${{ $producto->precio }}</td>
                                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $producto->disponibles }}</td>

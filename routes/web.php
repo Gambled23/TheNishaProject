@@ -26,6 +26,8 @@ Route::get('/', function () {
 return view('home', /*['productos' => $productos]*/);
 })->name('home');
 
+
+//GRUPO DE RUTAS CON MIDDLEWARE
 Route::group(['middleware' => 'auth'], function() {
 
     Route::group([

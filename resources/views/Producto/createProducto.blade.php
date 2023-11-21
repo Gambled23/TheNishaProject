@@ -84,8 +84,9 @@ $pagina = "Productos"
                     </div>
                     @enderror
                     </p>
+                    <br>
                     <div class="form-group">
-                        <label for="variacions">Variaciones</label>
+                        <label class="text-gray-600" for="variacions">Variaciones</label>
                         
                         @include('Producto.partials.variations')
 
@@ -95,16 +96,14 @@ $pagina = "Productos"
                             </div>
                         @endif
                     </div>
-                    
-
-
+                    <br>
                     <div class="mb-4">
                         <label class="text-gray-600">Tags</label>
                         <div class="grid grid-cols-3 gap-4">
                             @foreach ($tags as $id => $tags)
                                 <div class="flex items-center">
                                     <input type="checkbox" id="tags" name="tags[]"
-                                        value="{{ $id }}" class="mr-2 rounded @error('tags') border-red-500 @enderror">
+                                        value="{{ $id }}" class="mr-2 rounded">
                                     <label for="{{ $id }}">{{ $tags }}</label>
                                 </div>
                             @endforeach

@@ -43,6 +43,7 @@ class ProductoController extends Controller
             'disponibles' => 'required|numeric',
             'producto.variacions.*' => ['min:5'],
             'variacions' => ['array'],
+            'tags' => ['array'],
             'image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 

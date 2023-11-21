@@ -33,7 +33,7 @@ $pagina = "Variaciones"
                         
                             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                                 
-                                <td class="whitespace-nowrap px-6 py-4 font-medium"><a href ="{{ route('admin.variacion.show', $var)}}">{{ $var->nombre }}</a></td> 
+                                <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $var->nombre }}</td> 
                                 <td class="whitespace-nowrap px-6 py-4 font-medium"> <button type="button" class="text-black bg-white-700 hover:bg-gray-200 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 15L4 16V20H8L14 14M18 10L21 7L17 3L14 6M18 10L17 11M18 10L14 6M14 6L7.5 12.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
