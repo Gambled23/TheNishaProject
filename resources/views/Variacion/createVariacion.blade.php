@@ -4,15 +4,15 @@
 
 
 <?php
-$pagina = "Tags"
+$pagina = "Variaciones"
 ?>
 
 <x-admin.upper-bar :$pagina/>
 
 <div class="w-full max-w-xs">
-        <h1 class="text-center mb-10 text-2xl font-mono"><br>FORMULARIO DE TAG</h1>
+        <h1 class="text-center mb-10 text-2xl font-mono"><br>FORMULARIO DE VARIACIONES</h1>
 
-            <form method="POST" action="{{ route('admin.tag.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST" action="{{ route('admin.variacion.store') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf <!--cross site resource forgery-->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>
@@ -24,7 +24,6 @@ $pagina = "Tags"
                         </svg>{{ $message }}
                     </div>
                     @enderror
-
                 </div>
                 <div class="mb-4">
                     <input class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Enviar">

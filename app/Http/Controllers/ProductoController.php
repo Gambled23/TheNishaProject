@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateProductoRequest;
+use App\Models\Tag;
 use App\Models\Producto;
 use App\Models\Variacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\UpdateProductoRequest;
 
 class ProductoController extends Controller
 {
@@ -26,7 +27,8 @@ class ProductoController extends Controller
     public function create()
     {
         $variacions = Variacion::all();
-        return view('Producto/createProducto', compact('variacions'));
+        $tags = Tag::all()->pluck('nombre', 'id');
+        return view('Producto/createProducto', compact('variacions', 'tags'));
     }
 
     /**
@@ -41,6 +43,7 @@ class ProductoController extends Controller
             'disponibles' => 'required|numeric',
             'producto.variacions.*' => ['min:5'],
             'variacions' => ['array'],
+            'tags' => ['array'],
             'image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
@@ -57,7 +60,13 @@ class ProductoController extends Controller
                 $data['image'][$key] = $name;  
             }
         }
+
         $producto = Producto::create($data);
+
+        if($request->tags)
+        {
+            $producto->tags()->sync($request->input('tags', []));
+        }
 
         if($request->variacions)
         {
@@ -66,7 +75,7 @@ class ProductoController extends Controller
 
 
         session()->flash('success', 'El producto se añadió con exito');
-        return redirect()->route('producto.index');
+        return redirect()->route('admin.producto.index');
     }
 
     /**
@@ -116,7 +125,7 @@ class ProductoController extends Controller
         $producto->variacions()->sync($this->mapVariacions($data['variacions']));
 
         session()->flash('success', 'El producto se modificó con exito');
-        return redirect()->route('producto.index'); 
+        return redirect()->route('admin.producto.index'); 
     }
 
     private function mapVariacions($variacions)
@@ -133,6 +142,6 @@ class ProductoController extends Controller
     {
         $producto->delete();
         session()->flash('success', 'El producto se elimino con exito');
-        return redirect()->route('producto.index');
+        return redirect()->route('admin.producto.index');
     }
 }

@@ -24,6 +24,8 @@ class TagController extends Controller
      */
     public function create()
     {
+
+        $this->authorize('create', Tag::class);
         $products = Producto::all();
         return view('Tag/createTag', compact('products'));
 
@@ -34,16 +36,17 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Tag::class);
         $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
 
         $tag = Tag::create($request->all());
 
-        $tag->productos()->attach($request->producto_id);
+        //$tag->productos()->attach($request->producto_id);
 
         session()->flash('success', 'El Tag se creo con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -59,6 +62,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
+        $this->authorize('update', $tag);
         return view('Tag/editTag', compact('tag'));
     }
 
@@ -67,6 +71,7 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $this->authorize('update', $tag);
         $validated = $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
@@ -74,7 +79,7 @@ class TagController extends Controller
         Tag::where('id', $tag->id)->update($request->except('_token', '_method'));
 
         session()->flash('success', 'El Tag se actualizo con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -82,8 +87,9 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        $this->authorize('delete', $tag);
         $tag->delete();
         session()->flash('success', 'El tag se eliminó con exito');
-        return redirect()->route('tag.index');
+        return redirect()->route('admin.tag.index');
     }
 }

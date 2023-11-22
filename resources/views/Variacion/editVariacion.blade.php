@@ -2,20 +2,20 @@
 @section('body')
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
     <?php
-    $pagina = "Editar Tags"
+    $pagina = "Editar Variacion"
     ?>
 
     <x-admin.upper-bar :$pagina/>
 
     <div class="w-full max-w-xs mx-auto"> <!-- Added mx-auto class -->
-        <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR TAG</h1>
+        <h1 class="text-center mb-10 text-2xl font-mono"><br>EDITAR VARIACION</h1>
 
-        <form method="POST" action="{{ route('admin.tag.update', $tag) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form method="POST" action="{{ route('admin.variacion.update', $variacion) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             @csrf <!--cross site resource forgery-->
             @method('PATCH') <!--Apegado a rest-->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ $tag->nombre }}">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{ $variacion->nombre }}">
                 @error('nombre')
                     <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                         <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

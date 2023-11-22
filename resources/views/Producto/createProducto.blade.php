@@ -11,7 +11,7 @@ $pagina = "Productos"
 
 
 <div class="p-6">
-<form method="POST" action="{{ route('producto.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.producto.store') }}" enctype="multipart/form-data">
     <div class="w-full">
         <div class="flex flex-row justify-center"> <!-- Div de parte superior -->
 
@@ -84,8 +84,9 @@ $pagina = "Productos"
                     </div>
                     @enderror
                     </p>
+                    <br>
                     <div class="form-group">
-                        <label for="variacions">{{ trans('crud.producto.campos.variacions') }}</label>
+                        <label class="text-gray-600" for="variacions">Variaciones</label>
                         
                         @include('Producto.partials.variations')
 
@@ -94,8 +95,25 @@ $pagina = "Productos"
                                 {{ $errors->first('variacions') }}
                             </div>
                         @endif
-
                     </div>
+                    <br>
+                    <div class="mb-4">
+                        <label class="text-gray-600">Tags</label>
+                        <div class="grid grid-cols-3 gap-4">
+                            @foreach ($tags as $id => $tags)
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="tags" name="tags[]"
+                                        value="{{ $id }}" class="mr-2 rounded">
+                                    <label for="{{ $id }}">{{ $tags }}</label>
+                                </div>
+                            @endforeach
+                            @error('tags')
+                                <p class="text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -106,6 +124,7 @@ $pagina = "Productos"
         </button>
     </div>
 </form>
+
 </main>
 
 <style>
