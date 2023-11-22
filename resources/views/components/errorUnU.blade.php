@@ -14,22 +14,27 @@
     <div class="p-8 rounded" style="font-family: 'Kosugi Maru';">
         <h1 class="text-4xl font-bold mb-4 h1text">Nyaaaa (=`ω´=)”</h1>
         <p class="text-gray-600 ptext">Esto no debería salir (T_T)</p>
-        <p class="text-gray-600"><b>Bakaaaa</b> (＃＞＜) ¿Cómo lograste llegar aquí?</p>
-        <p class="text-gray-600">No deberías estar aquí 人(_ _*)</p>
-        <p class="text-gray-600">Estamos trabajando para resolver este error (￣▽￣*)ゞ</p>
-        <br><br><br><br>
+        <p class="text-gray-600 ptext"><b>Bakaaaa</b> (＃＞＜) ¿Cómo lograste llegar aquí?</p>
+        <p class="text-gray-600 ptext">No deberías estar aquí 人(_ _*)</p>
+        <p class="text-gray-600 ptext">Estamos trabajando para resolver este error (￣▽￣*)ゞ</p>
+        <br>
         <div class=" flex">
             <h2 class="text-xl h2text">Este fue un mensaje de Nisha</h2> 
             <x-application-mark/>
         </div>
     </div>
+</div>
+
+<hr>
+
+<div class="flex items-center justify-center">
     <div class="p-8 rounded" style="font-family: 'Kosugi Maru';">
         <h1 class="text-4xl font-bold mb-4 h1text">にゃー (=`ω´=)”</h1>
         <p class="text-gray-600 ptext">これは出てはいけません (T_T)</p>
-        <p class="text-gray-600"><b>ばか</b> (＃＞＜) どうやってここに来たの？</p>
-        <p class="text-gray-600">ここにいてはいけません 人(_ _*)</p>
-        <p class="text-gray-600">このエラーを解決するために働いています (￣▽￣*)ゞ</p>
-        <br><br><br><br>
+        <p class="text-gray-600 ptext"><b>ばか</b> (＃＞＜) どうやってここに来たの？</p>
+        <p class="text-gray-600 ptext">ここにいてはいけません 人(_ _*)</p>
+        <p class="text-gray-600 ptext">このエラーを解決するために働いています (￣▽￣*)ゞ</p>
+        <br>
         <div class="flex">
             <h2 class="text-xl h2text">これはニーシャのメッセージでした</h2> 
             <x-application-mark/>
