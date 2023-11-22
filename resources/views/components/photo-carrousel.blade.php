@@ -1,5 +1,5 @@
 <style>
-    .hidden {
+    .carousel-hidden {
         display: none;
     }
     .carousel-container {
@@ -11,14 +11,14 @@
     .carousel-container img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
-        border-radius: 25px; /* Adjust as needed */
+        object-fit: cover; /* Changed from contain to cover */
+        border-radius: 2%; /* Adjust as needed */
     }
 </style>
 
 <div class="carousel-container" data-carousel="slide">
     @for ($i = 0; $i < $producto->imagenesTotales; $i++)
-        <img src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' class="{{ $i == 0 ? '' : 'hidden' }}" alt="Image {{ $i + 1 }}">
+        <img src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' class="{{ $i == 0 ? '' : 'carousel-hidden' }}" alt="Image {{ $i + 1 }}">
     @endfor
 </div>
 <div class="flex justify-center mt-4">
@@ -34,23 +34,23 @@
     // Add event listeners to the buttons
     nextButton.addEventListener('click', function() {
         // Get the current active image
-        let activeImage = carousel.querySelector('img:not(.hidden)');
+        let activeImage = carousel.querySelector('img:not(.carousel-hidden)');
         // Get the next image
         let nextImage = activeImage.nextElementSibling || carousel.firstElementChild;
 
         // Change the active image
-        activeImage.classList.add('hidden');
-        nextImage.classList.remove('hidden');
+        activeImage.classList.add('carousel-hidden');
+        nextImage.classList.remove('carousel-hidden');
     });
 
     prevButton.addEventListener('click', function() {
         // Get the current active image
-        let activeImage = carousel.querySelector('img:not(.hidden)');
+        let activeImage = carousel.querySelector('img:not(.carousel-hidden)');
         // Get the previous image
         let prevImage = activeImage.previousElementSibling || carousel.lastElementChild;
 
         // Change the active image
-        activeImage.classList.add('hidden');
-        prevImage.classList.remove('hidden');
+        activeImage.classList.add('carousel-hidden');
+        prevImage.classList.remove('carousel-hidden');
     });
 </script>
