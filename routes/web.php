@@ -24,11 +24,11 @@ Route::get('/redirect', [HomeController::class, 'redirect']);
 Route::get('/', function () {
     try {
         $productos = Producto::latest()->take(7)->get();
-        return view('home', ['productos' => $productos]);
     }
     catch (Exception $e) {
-        return view('home');
+        $productos = null;
     }
+    return view('home', ['productos' => $productos]);
 })->name('home');
 
 
