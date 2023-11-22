@@ -39,17 +39,21 @@
         <a href="{{ route('producto.show', $productos->skip(4)->first()->id) }}">
         <img class="h-48 w-full object-cover" src='{{ URL::to("/images/{$productos->skip(4)->first()->nombre}_0.jpg") }}' alt="{{ $productos->skip(4)->first()->nombre }}">
         </a>
+
         @endif
         @if($productos->count() >= 6)
-        <a href="{{ route('producto.show', $productos->skip(5)->first()->id) }}">
+        {{-- <a href="{{ route('producto.show', $productos->skip(5)->first()->id) }}">
+
         <img class="h-48 w-full object-cover" src='{{ URL::to("/images/{$productos->skip(5)->first()->nombre}_0.jpg") }}' alt="{{ $productos->skip(5)->first()->nombre }}">
         </a>
         @endif
         @if($productos->count() >= 7)
         <a href="{{ route('producto.show', $productos->skip(6)->first()->id) }}">
         <img class="h-48 w-full object-cover" src='{{ URL::to("/images/{$productos->skip(6)->first()->nombre}_0.jpg") }}' alt="{{ $productos->skip(6)->first()->nombre }}">
-        </a>
+
+        </a> --}}
         @endif
+
     </div>
 </div>
 </div>
