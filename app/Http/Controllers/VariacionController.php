@@ -22,6 +22,7 @@ class VariacionController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Variacion::class);
         $variacions = Variacion::all();
         return view('Variacion.createVariacion', compact('variacions'));
     }
@@ -31,6 +32,7 @@ class VariacionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Variacion::class);
         $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
@@ -54,6 +56,7 @@ class VariacionController extends Controller
      */
     public function edit(Variacion $variacion)
     {
+        $this->authorize('update', $variacion);
         return view('Variacion.editVariacion', compact('variacion'));
     }
 
@@ -62,6 +65,7 @@ class VariacionController extends Controller
      */
     public function update(Request $request, Variacion $variacion)
     {
+        $this->authorize('update', $variacion);
         $validated = $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
@@ -77,6 +81,7 @@ class VariacionController extends Controller
      */
     public function destroy(Variacion $variacion)
     {
+        $this->authorize('delete', $variacion);
         $variacion->delete();
         session()->flash('success', 'La variación se eliminó con exito');
         return redirect()->route('admin.variacion.index');

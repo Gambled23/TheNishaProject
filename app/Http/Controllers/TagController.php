@@ -24,6 +24,8 @@ class TagController extends Controller
      */
     public function create()
     {
+
+        $this->authorize('create', Tag::class);
         $products = Producto::all();
         return view('Tag/createTag', compact('products'));
 
@@ -34,6 +36,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Tag::class);
         $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
@@ -59,6 +62,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
+        $this->authorize('update', $tag);
         return view('Tag/editTag', compact('tag'));
     }
 
@@ -67,6 +71,7 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $this->authorize('update', $tag);
         $validated = $request->validate([
             'nombre' => ['required', 'min:2', 'max:30']
         ]);
@@ -82,6 +87,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        $this->authorize('delete', $tag);
         $tag->delete();
         session()->flash('success', 'El tag se eliminó con exito');
         return redirect()->route('admin.tag.index');
