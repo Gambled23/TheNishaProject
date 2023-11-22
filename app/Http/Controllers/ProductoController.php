@@ -106,6 +106,38 @@ class ProductoController extends Controller
 
     }
 
+    public function editImages(Producto $producto)
+    {
+        return view('Producto/editImages', compact('producto'));
+    }
+
+    public function deleteImages(Request $request, Producto $producto)
+    {
+        $request->validate([
+            'images' => 'required|array',
+            'images.*' => 'required|integer',
+        ]);
+
+        $images = $request->input('images', []);
+
+        foreach($images as $image)
+        {
+            $name = $producto->nombre . '_' . $image . '.' . 'jpg';
+            unlink(public_path().'/images/' . $name);
+            $producto->imagenesTotales--;
+            $producto->save();
+        }
+        $files = glob(public_path('images/' . $producto->nombre . '_*.' . 'jpg'));
+
+        sort($files, SORT_NATURAL); // Sort files in natural order
+
+        for ($i = 0; $i < count($files); $i++) {
+            $newName = $producto->nombre . '_' . $i . '.' . 'jpg';
+            rename($files[$i], public_path('images/' . $newName));
+        }
+        session()->flash('success', 'Las imagenes se eliminaron con exito');
+        return redirect()->route('admin.producto.index');
+    }
     /**
      * Update the specified resource in storage.
      */
