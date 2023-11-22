@@ -1,7 +1,7 @@
 @extends ('layouts.main')
 @section('body')
 
-<div class="flex flex-wrap">
+<div class="flex flex-wrap pl-4">
     <!-- Sidebar -->
     <div class="px-6 py-4 w-full md:w-1/6 bg-slate-50 shadow border border-gray-100 rounded-lg md:flex md:flex-col md:justify-start md:items-start">
         <h2 class="text-2xl font-bold mb-2"><a href="{{ route('tienda') }}">Categorias</a></h2>
