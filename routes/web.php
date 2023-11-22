@@ -39,6 +39,9 @@ Route::group(['middleware' => 'auth'], function() {
             Route::get('producto/create', [ProductoController::class, 'create'])->name('producto.create');
             Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
             Route::get('producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
+            Route::get('producto/{producto}/editImages', [ProductoController::class, 'editImages'])->name('producto.editImages');
+            Route::delete('producto/{producto}/deleteImages', [ProductoController::class, 'deleteImages'])->name('producto.deleteImages');
+            Route::post('producto/{producto}/uploadImages', [ProductoController::class, 'uploadImages'])->name('producto.uploadImages');
             Route::put('producto/{producto}', [ProductoController::class, 'update'])->name('producto.update');
             Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
             Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store'); 

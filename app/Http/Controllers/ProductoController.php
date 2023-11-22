@@ -8,6 +8,7 @@ use App\Models\Variacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateProductoRequest;
+use Image;
 
 class ProductoController extends Controller
 {
@@ -56,7 +57,21 @@ class ProductoController extends Controller
             foreach($images as $key => $image)
             {
                 $name = $request->nombre . '_' . $key . '.' . 'jpg';
-                $image->move(public_path().'/images/', $name);  
+
+                // Resize image instance
+                $img = Image::make($image);
+                $width = $img->width();
+                $height = $img->height();
+
+                // calculate smaller size
+                $size = min([$width, $height]);
+
+                // crop image
+                $img->crop($size, $size);
+
+                // save image
+                $img->save(public_path().'/images/' . $name);
+
                 $data['image'][$key] = $name;  
             }
         }
@@ -106,6 +121,80 @@ class ProductoController extends Controller
 
     }
 
+    public function editImages(Producto $producto)
+    {
+        return view('Producto/editImages', compact('producto'));
+    }
+
+    public function deleteImages(Request $request, Producto $producto)
+    {
+        $request->validate([
+            'images' => 'required|array',
+            'images.*' => 'required|integer',
+        ]);
+
+        $images = $request->input('images', []);
+        if(count($images) > $producto->imagenesTotales)
+        {
+            session()->flash('error', 'No se puede eliminar mas imagenes de las que hay');
+            return back();
+        }
+        if($producto->imagenesTotales - count($images) <= 0)
+        {
+            session()->flash('error', 'No se puede dejar un producto sin imagenes');
+            return back();
+        }
+        foreach($images as $image)
+        {
+            $name = $producto->nombre . '_' . $image . '.' . 'jpg';
+            unlink(public_path().'/images/' . $name);
+            $producto->imagenesTotales--;
+            $producto->save();
+        }
+        $files = glob(public_path('images/' . $producto->nombre . '_*.' . 'jpg'));
+
+        sort($files, SORT_NATURAL); // Sort files in natural order
+
+        for ($i = 0; $i < count($files); $i++) {
+            $newName = $producto->nombre . '_' . $i . '.' . 'jpg';
+            rename($files[$i], public_path('images/' . $newName));
+        }
+        session()->flash('success', 'Las imagenes se eliminaron con exito');
+        return back();
+    }
+
+    public function uploadImages(Request $request, Producto $producto)
+    {
+        $request->validate([
+            'images' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $images = $request->file('images');
+
+        $lastImage = $producto->imagenesTotales;
+        foreach($images as $key => $image)
+        {
+            $name = $producto->nombre . '_' . ($key + $lastImage) . '.' . 'jpg';
+
+            // Create an image instance and crop it to a square
+            $img = Image::make($image);
+            $width = $img->width();
+            $height = $img->height();
+            $size = min([$width, $height]);
+            $img->crop($size, $size);
+
+            // Save the cropped image
+            $img->save(public_path().'/images/' . $name);
+
+            $producto->imagenesTotales++;
+            $producto->save();
+        }
+
+        session()->flash('success', 'Las imagenes se subieron con exito');
+        return back();
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -135,11 +224,16 @@ class ProductoController extends Controller
         });
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Producto $producto)
     {
+        // Borrar imagenes
+        for ($i = 0; $i < $producto->imagenesTotales; $i++) {
+            $name = $producto->nombre . '_' . $i . '.' . 'jpg';
+            if (file_exists(public_path().'/images/' . $name)) {
+                unlink(public_path().'/images/' . $name);
+            }
+        }
+
         $producto->delete();
         session()->flash('success', 'El producto se elimino con exito');
         return redirect()->route('admin.producto.index');

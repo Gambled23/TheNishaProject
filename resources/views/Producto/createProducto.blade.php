@@ -20,7 +20,7 @@ $pagina = "Productos"
 
                 <div class="w-full md:w-1/2 md:pr-4">
                     <label class="h-full shadow appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white flex justify-center items-center cursor-pointer">
-                        <input type="file" class="hidden" name="image[]" id="image" onchange="updateFileName(this)" multiple>
+                        <input required type="file" class="hidden" name="image[]" id="image" onchange="updateFileName(this)" multiple>
                         @error('image')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -42,7 +42,7 @@ $pagina = "Productos"
                 <div class="w-full md:w-1/2">
 
                     <h1 class="text-4xl font-bold">
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+                        <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{old('nombre')}}">
                         @error('nombre')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -53,7 +53,7 @@ $pagina = "Productos"
                     </h1>
 
                     <h2 class="my-2">
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="precio" id="precio" placeholder="$" value="{{old('precio')}}">
+                        <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="precio" id="precio" placeholder="$" value="{{old('precio')}}">
                         @error('precio')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +64,7 @@ $pagina = "Productos"
                     </h2>
 
                     <h3>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="disponibles" id="disponibles" placeholder="Stock" value="{{old('disponibles')}}">
+                        <input require class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="disponibles" id="disponibles" placeholder="Stock" value="{{old('disponibles')}}">
                         @error('disponibles')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -75,7 +75,7 @@ $pagina = "Productos"
                     </h3>
 
                     <p class="my-1">
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" value="{{old('descripcion')}}">
+                        <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" value="{{old('descripcion')}}">
                         @error('descripcion')
                     <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                         <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
