@@ -72,6 +72,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if($user->trashed()) {
+            $this->authorize('soft_delete');
             $user->forceDelete();
             return redirect()->to('/admin/archive');
         }
@@ -90,6 +91,8 @@ class UserController extends Controller
 
     public function restore(User $user, Request $request)
     {
+        $this->authorize('soft_db');
+
         $user->restore();
 
         return redirect()->to('/admin/archive');
