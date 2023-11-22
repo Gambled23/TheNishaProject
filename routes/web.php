@@ -22,8 +22,8 @@ use App\Http\Controllers\productoCategoriaController;
 Route::get('/redirect', [HomeController::class, 'redirect']);
 
 Route::get('/', function () {
-    #$productos = Producto::take(2)->get();
-return view('home', /*['productos' => $productos]*/);
+    $productos = Producto::latest()->take(7)->get();
+    return view('home', ['productos' => $productos]);
 })->name('home');
 
 
@@ -122,8 +122,6 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/producto/{producto}', [ProductoController::class, 'show'])->name('producto.show');
-
-//Route::resource('categoria', CategoriaController::class);
 
 Route::get('/tests', function () {
     $제품 = producto::all();
