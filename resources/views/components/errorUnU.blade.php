@@ -23,4 +23,16 @@
             <x-application-mark/>
         </div>
     </div>
+    <div class="p-8 rounded" style="font-family: 'Kosugi Maru';">
+        <h1 class="text-4xl font-bold mb-4 h1text">にゃー (=`ω´=)”</h1>
+        <p class="text-gray-600 ptext">これは出てはいけません (T_T)</p>
+        <p class="text-gray-600"><b>ばか</b> (＃＞＜) どうやってここに来たの？</p>
+        <p class="text-gray-600">ここにいてはいけません 人(_ _*)</p>
+        <p class="text-gray-600">このエラーを解決するために働いています (￣▽￣*)ゞ</p>
+        <br><br><br><br>
+        <div class="flex">
+            <h2 class="text-xl h2text">これはニーシャのメッセージでした</h2> 
+            <x-application-mark/>
+        </div>
+    </div>
 </div>
