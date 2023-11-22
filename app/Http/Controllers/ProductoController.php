@@ -8,6 +8,7 @@ use App\Models\Variacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateProductoRequest;
+use Image;
 
 class ProductoController extends Controller
 {
@@ -56,7 +57,21 @@ class ProductoController extends Controller
             foreach($images as $key => $image)
             {
                 $name = $request->nombre . '_' . $key . '.' . 'jpg';
-                $image->move(public_path().'/images/', $name);  
+
+                // Resize image instance
+                $img = Image::make($image);
+                $width = $img->width();
+                $height = $img->height();
+
+                // calculate smaller size
+                $size = min([$width, $height]);
+
+                // crop image
+                $img->crop($size, $size);
+
+                // save image
+                $img->save(public_path().'/images/' . $name);
+
                 $data['image'][$key] = $name;  
             }
         }
@@ -161,7 +176,17 @@ class ProductoController extends Controller
         foreach($images as $key => $image)
         {
             $name = $producto->nombre . '_' . ($key + $lastImage) . '.' . 'jpg';
-            $image->move(public_path().'/images/', $name);  
+
+            // Create an image instance and crop it to a square
+            $img = Image::make($image);
+            $width = $img->width();
+            $height = $img->height();
+            $size = min([$width, $height]);
+            $img->crop($size, $size);
+
+            // Save the cropped image
+            $img->save(public_path().'/images/' . $name);
+
             $producto->imagenesTotales++;
             $producto->save();
         }
