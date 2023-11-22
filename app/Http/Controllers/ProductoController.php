@@ -119,7 +119,16 @@ class ProductoController extends Controller
         ]);
 
         $images = $request->input('images', []);
-
+        if(count($images) > $producto->imagenesTotales)
+        {
+            session()->flash('error', 'No se puede eliminar mas imagenes de las que hay');
+            return back();
+        }
+        if($producto->imagenesTotales - count($images) <= 0)
+        {
+            session()->flash('error', 'No se puede dejar un producto sin imagenes');
+            return back();
+        }
         foreach($images as $image)
         {
             $name = $producto->nombre . '_' . $image . '.' . 'jpg';
@@ -136,7 +145,7 @@ class ProductoController extends Controller
             rename($files[$i], public_path('images/' . $newName));
         }
         session()->flash('success', 'Las imagenes se eliminaron con exito');
-        return redirect()->route('admin.producto.index');
+        return back();
     }
 
     public function uploadImages(Request $request, Producto $producto)
@@ -158,7 +167,7 @@ class ProductoController extends Controller
         }
 
         session()->flash('success', 'Las imagenes se subieron con exito');
-        return redirect()->route('admin.producto.index');
+        return back();
     }
 
     /**
@@ -190,11 +199,16 @@ class ProductoController extends Controller
         });
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Producto $producto)
     {
+        // Borrar imagenes
+        for ($i = 0; $i < $producto->imagenesTotales; $i++) {
+            $name = $producto->nombre . '_' . $i . '.' . 'jpg';
+            if (file_exists(public_path().'/images/' . $name)) {
+                unlink(public_path().'/images/' . $name);
+            }
+        }
+
         $producto->delete();
         session()->flash('success', 'El producto se elimino con exito');
         return redirect()->route('admin.producto.index');

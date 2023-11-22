@@ -57,7 +57,7 @@
                                     <form action="{{ route('admin.producto.editImages', $producto) }}" method="GET">
                                         <button type="submit" class="text-black bg-white-700 hover:bg-gray-200 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                                             <svg class="w-3.5 h-3.5" aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 15L4 16V20H8L14 14M18 10L21 7L17 3L14 6M18 10L17 11M18 10L14 6M14 6L7.5 12.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M22 17V7C22 5.9 21.1 5 20 5H4C2.9 5 2 5.9 2 7V17C2 18.1 2.9 19 4 19H20C21.1 19 22 18.1 22 17ZM8.5 13.5L11 11L14.5 15H4V7H20V13.5L16.5 10L13 13.5L11 12L8.5 13.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg> Editar imagenes
                                         </button>
                                     </form>

@@ -13,8 +13,18 @@
         }
     </style>
 </head>
-<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
 
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+@if ($message = Session::get('success'))
+    <div class="p-4 mb-3 bg-blue-400 rounded">
+        <p class="text-white">{{ $message }}</p>
+    </div>
+@endif
+@if ($message = Session::get('error'))
+    <div class="p-4 mb-3 bg-red-400 rounded">
+        <p class="text-white">{{ $message }}</p>
+    </div>
+@endif
 <form method="POST" action="{{ route('admin.producto.deleteImages', [$producto->id]) }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
     @csrf
     @method('DELETE')
