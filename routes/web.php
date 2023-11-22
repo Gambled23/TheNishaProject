@@ -26,7 +26,7 @@ Route::get('/', function () {
         $productos = Producto::latest()->take(7)->get();
     }
     catch (Exception $e) {
-        $productos = null;
+        $productos = [];
     }
     return view('home', ['productos' => $productos]);
 })->name('home');
