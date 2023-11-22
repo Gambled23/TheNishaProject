@@ -22,8 +22,13 @@ use App\Http\Controllers\productoCategoriaController;
 Route::get('/redirect', [HomeController::class, 'redirect']);
 
 Route::get('/', function () {
-    $productos = Producto::latest()->take(7)->get();
-    return view('home', ['productos' => $productos]);
+    try {
+        $productos = Producto::latest()->take(7)->get();
+        return view('home', ['productos' => $productos]);
+    }
+    catch (Exception $e) {
+        return view('home');
+    }
 })->name('home');
 
 
