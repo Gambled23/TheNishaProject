@@ -16,7 +16,7 @@
                     <span class="text-sm text-gray-300">Crud</span>
                     <i class="ri-arrow-right-s-line ml-auto group-[.selected]:rotate-90"></i>
                 </a>
-                <ul class="pl-7 mt-2 hidden group-[.selected]:block">
+                <ul class="pl-7 mt-2 group-[.selected]:block">
                     <li class="mb-4">
                         <a href="{{url('admin/producto')}}" class="text-gray-300 text-sm flex items-center hover:text-gray-100 before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Producto</a>
                     </li> 
