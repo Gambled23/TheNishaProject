@@ -9,4 +9,8 @@ class Pedidos extends Model
 {
     protected $fillable = ['user_id', 'puntoEntrega', 'precioTotal'];
     use HasFactory;
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
