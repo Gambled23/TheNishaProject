@@ -138,6 +138,29 @@ class ProductoController extends Controller
         session()->flash('success', 'Las imagenes se eliminaron con exito');
         return redirect()->route('admin.producto.index');
     }
+
+    public function uploadImages(Request $request, Producto $producto)
+    {
+        $request->validate([
+            'images' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $images = $request->file('images');
+
+        $lastImage = $producto->imagenesTotales;
+        foreach($images as $key => $image)
+        {
+            $name = $producto->nombre . '_' . ($key + $lastImage) . '.' . 'jpg';
+            $image->move(public_path().'/images/', $name);  
+            $producto->imagenesTotales++;
+            $producto->save();
+        }
+
+        session()->flash('success', 'Las imagenes se subieron con exito');
+        return redirect()->route('admin.producto.index');
+    }
+
     /**
      * Update the specified resource in storage.
      */
