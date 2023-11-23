@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
@@ -24,7 +25,7 @@ Route::get('/', function () {
     $productos = Producto::latest()->take(7)->get();
     if(Auth::check() && Auth::user()->usertype)
         {
-            return view('admin.dashboard');
+            return app(HomeController::class)->index();
         }else{
             return view('home', ['productos' => $productos]);
         }

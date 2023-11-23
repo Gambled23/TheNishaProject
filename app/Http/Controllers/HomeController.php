@@ -20,7 +20,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
     
-    public function redirect()
+    public function index()
     {
         $usertype=Auth::user()->usertype;
 
@@ -49,11 +49,6 @@ class HomeController extends Controller
             #dd($datos['pedidos']);
             #dd($datos);
             return view('admin.dashboard', compact('datos'));
-        }
-
-        else
-        {
-            return view('home');
         }
     }
 }
