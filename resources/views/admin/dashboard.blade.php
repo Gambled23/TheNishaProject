@@ -15,7 +15,7 @@
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">{{ $datos['trabajosPendientes'] }}</div>
+                        {{--    <div class="text-2xl font-semibold mb-1">{{ $datos['trabajosPendientes'] }}</div> --}}
                             <div class="text-sm font-medium text-gray-400">Trabajos pendientes</div>
                         </div>
                     </div>
@@ -25,13 +25,13 @@
                     <div class="flex justify-between mb-4">
                         <div>
                             <div class="flex items-center mb-1">
-                                <div class="text-2xl font-semibold">{{ $datos['clientes'] }}</div>
+                        {{--        <div class="text-2xl font-semibold">{{ $datos['clientes'] }}</div>
                                 @if ($datos['clientesNuevos'] > 0)
                                     <div class="p-1 rounded bg-emerald-500/10 text-emerald-500 text-[12px] font-semibold leading-none ml-2">+ {{ $datos['clientesNuevos'] }} </div>
                                 @else
                                     <div class="p-1 rounded bg-red-500/10 text-red-500 text-[12px] font-semibold leading-none ml-2">- {{ $datos['clientesNuevos'] }} :c </div>
                                 @endif
-                            </div>
+                            </div> --}}
                             <div class="text-sm font-medium text-gray-400">Clientes</div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datos['pedidos'] as $pedido)
+                                {{--@foreach ($datos['pedidos'] as $pedido)
                                 <tr>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
                                         <div class="flex items-center">
@@ -92,7 +92,7 @@
                                     </td>
 
                                 </tr>
-                                @endforeach
+                                @endforeach--}}
                             </tbody>
                         </table>
                     </div>

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
@@ -19,11 +18,16 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VariacionController;
 use App\Http\Controllers\productoCategoriaController;
 
-Route::get('/redirect', [HomeController::class, 'redirect']);
+
 
 Route::get('/', function () {
     $productos = Producto::latest()->take(7)->get();
-    return view('home', ['productos' => $productos]);
+    if(Auth::check() && Auth::user()->usertype)
+        {
+            return view('admin.dashboard');
+        }else{
+            return view('home', ['productos' => $productos]);
+        }
 })->name('home');
 
 
