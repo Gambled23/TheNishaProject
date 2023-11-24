@@ -62,4 +62,15 @@ class PedidosController extends Controller
     {
         //
     }
+
+    public function updateCompletado($id)
+    {
+        $pedido = Pedidos::find($id);
+        if ($pedido->completado == 1) {
+            $pedido->completado = 0;
+        } else
+        $pedido->completado = 1;
+        $pedido->save();
+        return redirect('/');
+    }
 }

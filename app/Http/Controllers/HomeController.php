@@ -29,13 +29,13 @@ class HomeController extends Controller
         $clientesNuevos = User::where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-3 days')))->count();
 
         $datos = [
-            'trabajosPendientes' => Trabajos::count(),
+            'trabajosTotales' => Trabajos::count(),
             'clientes' => User::count(),
             'clientesNuevos' => $clientesNuevos - $clientesViejos,
-            'ordenesActivas' => Pedidos::where('completado', '=', '0')
+            'ordenesPendientes' => Pedidos::where('completado', '=', '0')
                             ->where('pagado', '=', '1')
                             ->count(),
-            'dineroOrdenesActivas' => Pedidos::where('completado', '=', '0')
+            'dineroPendiente' => Pedidos::where('completado', '=', '0')
                             ->where('pagado', '=', '1')
                             ->sum('precioTotal'),
         ];

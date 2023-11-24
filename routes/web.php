@@ -2,11 +2,14 @@
 
 use App\Models\Tag;
 use App\Models\Pedidos;
+use App\Models\Trabajos;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\confirmacionOrden;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -16,6 +19,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DomPdfController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\VariacionController;
 use App\Http\Controllers\productoCategoriaController;
 
@@ -51,6 +55,11 @@ Route::group(['middleware' => 'auth'], function() {
             Route::delete('producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
             Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store'); 
             
+            //PEDIDOS
+            Route::put('/{id}', [PedidosController::class, 'updateCompletado'])->name('pedidos.update');
+
+            
+
             //VARIACION
             Route::resource('variacion', VariacionController::class);
 
@@ -60,6 +69,12 @@ Route::group(['middleware' => 'auth'], function() {
             //ARCHIVE (FORCE AND RESTORE)
             Route::get('/archive', [UserController::class, 'archive']);
 
+            //ORDENES
+            Route::post('/orden', function (Request $request) {
+                $trabajos = Trabajos::where('pedido_id', $request->pedido_id)->get();
+                $completado = Pedidos::where('id', $request->pedido_id)->first()->completado;
+                return view('admin.orden', ['trabajos' => $trabajos, 'completado' => $completado]);
+            })->name('orden');
      });
 
     Route::group([
@@ -78,7 +93,6 @@ Route::group(['middleware' => 'auth'], function() {
             Route::controller(PaymentController::class)
             ->prefix('paypal')
             ->group(function () {
-                Route::view('payment', 'paypal.index')->name('create.payment');
                 Route::post('handle-payment', 'handlePayment')->name('make.payment');
                 Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
                 Route::get('payment-success', 'paymentSuccess')->name('success.payment');
