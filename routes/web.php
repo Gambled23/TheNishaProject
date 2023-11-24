@@ -7,6 +7,8 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\confirmacionOrden;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -135,6 +137,11 @@ Route::get('/tests', function () {
     $제품 = producto::all();
     return view('tests', ['제품' => $제품]);
 });
+
+Route::post('/mail', function () {
+    $email = 'ipog71@gmail.com'; // Replace with the recipient's email address
+    Mail::to($email)->send(new confirmacionOrden());
+})->name('sendMail');
 
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
