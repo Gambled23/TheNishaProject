@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,12 @@ class User extends Authenticatable
     public function pedidos()
     {
         return $this->hasMany(Pedidos::class);
+    }
+    
+    public function name(): Attribute
+    {
+        return new Attribute(
+            set: fn (string $value) => ucwords($value),
+        );
     }
 }
