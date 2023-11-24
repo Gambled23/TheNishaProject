@@ -20,40 +20,28 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
     
-    public function redirect()
+    public function index()
     {
-        $usertype=Auth::user()->usertype;
 
-        if($usertype)
-        {    
-            $clientesViejos = User::where('created_at', '<=', date('Y-m-d H:i:s', strtotime('-30 days')))
-                                    ->where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-60 days')))
-                                    ->count();
-            $clientesNuevos = User::where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-3 days')))->count();
-            
-            $datos = [
-                'trabajosPendientes' => Trabajos::count(),
-                'clientes' => User::count(),
-                'clientesNuevos' => $clientesNuevos - $clientesViejos,
-                'ordenesActivas' => Pedidos::where('completado', '=', '0')
-                                            ->where('pagado', '=', '1')
-                                            ->count(),
-                'dineroOrdenesActivas' => Pedidos::where('completado', '=', '0')
-                                            ->where('pagado', '=', '1')
-                                            ->sum('precioTotal'),
-                'pedidos' => Pedidos::where('pagado', '=', '1')->latest()->take(15)->get(),
+        $clientesViejos = User::where('created_at', '<=', date('Y-m-d H:i:s', strtotime('-30 days')))
+        ->where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-60 days')))
+        ->count();
+        $clientesNuevos = User::where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-3 days')))->count();
 
+        $datos = [
+            'trabajosPendientes' => Trabajos::count(),
+            'clientes' => User::count(),
+            'clientesNuevos' => $clientesNuevos - $clientesViejos,
+            'ordenesActivas' => Pedidos::where('completado', '=', '0')
+                            ->where('pagado', '=', '1')
+                            ->count(),
+            'dineroOrdenesActivas' => Pedidos::where('completado', '=', '0')
+                            ->where('pagado', '=', '1')
+                            ->sum('precioTotal'),
+        ];
 
+        $pedidosdatos = Pedidos::query()->with('user')->latest()->paginate();
 
-            ];
-            #dd($datos['pedidos']);
-            #dd($datos);
-            return view('admin.dashboard', compact('datos'));
-        }
-
-        else
-        {
-            return view('home');
-        }
+        return view('admin.dashboard', compact('pedidosdatos', 'datos'));
     }
 }

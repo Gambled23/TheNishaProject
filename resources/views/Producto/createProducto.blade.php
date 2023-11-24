@@ -64,7 +64,7 @@ $pagina = "Productos"
                     </h2>
 
                     <h3>
-                        <input require class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="disponibles" id="disponibles" placeholder="Stock" value="{{old('disponibles')}}">
+                        <input required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" type="text" name="disponibles" id="disponibles" placeholder="Stock" value="{{old('disponibles')}}">
                         @error('disponibles')
                         <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
                             <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -92,7 +92,7 @@ $pagina = "Productos"
 
                         @if($errors->has('variacions'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('variacions') }}
+                                {{ $errors->first('variacions')->withInput(); }}
                             </div>
                         @endif
                     </div>
