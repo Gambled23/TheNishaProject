@@ -1,7 +1,7 @@
 @extends ('layouts.admin')
 @section('body')
     <!-- start: Main -->
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+    <main class="md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
         
         <?php
         $pagina = "Inicio"
