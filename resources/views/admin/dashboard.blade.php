@@ -14,8 +14,8 @@
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">{{ $datos['trabajosPendientes'] }}</div>
-                            <div class="text-sm font-medium text-gray-400">Trabajos pendientes</div>
+                            <div class="text-2xl font-semibold mb-1">{{ $datos['trabajosTotales'] }}</div>
+                            <div class="text-sm font-medium text-gray-400">Trabajos totales</div>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-2xl font-semibold mb-1"><span class="text-base font-normal text-gray-400 align-top">&dollar;</span>{{ $datos['dineroOrdenesActivas'] }}</div>
-                            <div class="text-sm font-medium text-gray-400">{{ $datos['ordenesActivas'] }} trabajos activos</div>
+                            <div class="text-2xl font-semibold mb-1"><span class="text-base font-normal text-gray-400 align-top">&dollar;</span>{{ $datos['dineroPendiente'] }}</div>
+                            <div class="text-sm font-medium text-gray-400">{{ $datos['ordenesPendientes'] }} trabajos pendientes</div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,11 @@
                                     <tr>  
                                         <td class="py-2 px-4 border-b border-b-gray-50">
                                             <div class="flex items-center">
-                                                <a href="#" class="text-blue-950 text-sm font-medium hover:text-blue-500 ml-2 truncate" style="text-decoration: underline;">{{ $pedido->id }}</a>
+                                                <form action="{{ route('admin.orden') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                                                    <button type="submit" class="text-blue-950 text-sm font-medium hover:text-blue-500 truncate" style="text-decoration: underline;">{{ $pedido->id }}</button>
+                                                </form>
                                             </div>
                                         </td>
                                         <td class="py-2 px-4 border-b border-b-gray-50">
