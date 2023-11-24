@@ -80,7 +80,6 @@ Route::group(['middleware' => 'auth'], function() {
             Route::controller(PaymentController::class)
             ->prefix('paypal')
             ->group(function () {
-                Route::view('payment', 'paypal.index')->name('create.payment');
                 Route::post('handle-payment', 'handlePayment')->name('make.payment');
                 Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
                 Route::get('payment-success', 'paymentSuccess')->name('success.payment');
@@ -137,11 +136,6 @@ Route::get('/tests', function () {
     $제품 = producto::all();
     return view('tests', ['제품' => $제품]);
 });
-
-Route::post('/mail', function () {
-    $email = 'ipog71@gmail.com'; // Replace with the recipient's email address
-    Mail::to($email)->send(new confirmacionOrden());
-})->name('sendMail');
 
 // Google Login
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');

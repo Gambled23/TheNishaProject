@@ -9,6 +9,8 @@ use App\Models\Producto;
 use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\confirmacionOrden;
 
 
 class PaymentController extends Controller
@@ -92,14 +94,26 @@ class PaymentController extends Controller
         $response = $provider->capturePaymentOrder($request['token']);
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            # Actualizar pedido a pagado
             $this->pedido = Pedidos::latest()->first();
             $this->pedido->pagado = true;
             $this->pedido->save();
-
+            # Enviar correo de confirmacion
+            $trabajos = Trabajos::where('pedido_id', $this->pedido->id)->get();
+            $email = Auth::user()->email;
+            $data = [
+                'nombreUsuario' => Auth::user()->name,
+                'fechaPedido' => date('d-m-Y h:i a', time()),
+                'precioTotal' => $this->pedido->precioTotal,
+                'puntoEntrega'=> $this->pedido->puntoEntrega,
+                'trabajos' => $trabajos
+            ];
+            Mail::to($email)->send(new confirmacionOrden($data));
+            
             return redirect()->route('account');
         } else {
             return redirect()
-                ->route('create.payment')
+                ->route('home')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
     }
