@@ -92,7 +92,7 @@ $pagina = "Productos"
 
                         @if($errors->has('variacions'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('variacions') }}
+                                {{ $errors->first('variacions')->withInput(); }}
                             </div>
                         @endif
                     </div>
