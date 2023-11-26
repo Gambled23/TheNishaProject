@@ -24,7 +24,7 @@ class PaymentController extends Controller
     {
         $this->pedido = new Pedidos;
     }
-    
+
     public function handlePayment(Request $request)
     {
         //Crear pedido
@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 ->with('error', 'Something went wrong.');
         } else {
             return redirect()
-                ->route('create.payment')
+                ->route('home')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
         }
     }
@@ -82,7 +82,7 @@ class PaymentController extends Controller
     public function paymentCancel()
     {
         return redirect()
-            ->route('create.payment')
+            ->route('home')
             ->with('error', $response['message'] ?? 'You have canceled the transaction.');
     }
 
@@ -105,11 +105,11 @@ class PaymentController extends Controller
                 'nombreUsuario' => Auth::user()->name,
                 'fechaPedido' => date('d-m-Y h:i a', time()),
                 'precioTotal' => $this->pedido->precioTotal,
-                'puntoEntrega'=> $this->pedido->puntoEntrega,
+                'puntoEntrega' => $this->pedido->puntoEntrega,
                 'trabajos' => $trabajos
             ];
             Mail::to($email)->send(new confirmacionOrden($data));
-            
+
             return redirect()->route('account');
         } else {
             return redirect()
@@ -118,4 +118,3 @@ class PaymentController extends Controller
         }
     }
 }
-
