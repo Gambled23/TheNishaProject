@@ -27,6 +27,7 @@ class Producto extends Model
     {
         return Attribute::make(
             get: fn (string $value) => ucwords($value),
+            set: fn (string $value) => ucwords($value),
         );
     }
 
