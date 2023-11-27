@@ -33,5 +33,9 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('soft_delete', fn(User $user) => $user->email == 'nisha@lol.com');
         Gate::define('soft_db', fn(User $user) => $user->usertype);
+        Gate::define('admin_delete', fn(User $user) => $user->email != 'nisha@lol.com');
+        Gate::define('admin_only', fn(User $user) => $user->usertype);
+        Gate::define('user_only', fn(User $user) => $user->usertype == false);
+
     }
 }

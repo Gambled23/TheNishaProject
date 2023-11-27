@@ -38,6 +38,12 @@
                 </a>
             </li>
             <li class="mb-1 group">
+                <a href="{{url('/tienda')}}" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                    <i class="ri-store-2-line mr-3 text-lg text-gray-300"></i>
+                    <span class="text-sm text-gray-300">Ir a ecomerce</span>
+                </a>
+            </li>
+            <li class="mb-1 group">
                 <form method="post" action="{{ route('logout') }}">
                     @csrf
                     <button class="flex items-center py-2 px-4 text-red-700 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">

@@ -22,6 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin_delete');
+        $this->authorize('admin_only');
+        $this->authorize('user_only');
         $users = User::all();
         return view('User/indexUser', ['users' => $users]);
     }
