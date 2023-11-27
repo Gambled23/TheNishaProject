@@ -56,7 +56,7 @@ class ProductoController extends Controller
             $data['imagenesTotales'] = count($images);
             foreach($images as $key => $image)
             {
-                $name = $request->nombre . '_' . $key . '.' . 'jpg';
+                $name = ucwords($request->nombre) . '_' . $key . '.' . 'jpg';
 
                 // Resize image instance
                 $img = Image::make($image);
@@ -146,17 +146,17 @@ class ProductoController extends Controller
         }
         foreach($images as $image)
         {
-            $name = $producto->nombre . '_' . $image . '.' . 'jpg';
+            $name = ucwords($producto->nombre) . '_' . $image . '.' . 'jpg';
             unlink(public_path().'/images/' . $name);
             $producto->imagenesTotales--;
             $producto->save();
         }
-        $files = glob(public_path('images/' . $producto->nombre . '_*.' . 'jpg'));
+        $files = glob(public_path('images/' . ucwords($producto->nombre) . '_*.' . 'jpg'));
 
         sort($files, SORT_NATURAL); // Sort files in natural order
 
         for ($i = 0; $i < count($files); $i++) {
-            $newName = $producto->nombre . '_' . $i . '.' . 'jpg';
+            $newName = ucwords($producto->nombre) . '_' . $i . '.' . 'jpg';
             rename($files[$i], public_path('images/' . $newName));
         }
         session()->flash('success', 'Las imagenes se eliminaron con exito');
@@ -175,7 +175,7 @@ class ProductoController extends Controller
         $lastImage = $producto->imagenesTotales;
         foreach($images as $key => $image)
         {
-            $name = $producto->nombre . '_' . ($key + $lastImage) . '.' . 'jpg';
+            $name = ucwords($producto->nombre) . '_' . ($key + $lastImage) . '.' . 'jpg';
 
             // Create an image instance and crop it to a square
             $img = Image::make($image);
