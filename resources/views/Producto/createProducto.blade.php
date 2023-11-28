@@ -1,6 +1,6 @@
 @extends ('layouts.admin')
 @section('body')
-<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
+<main class="md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
 
 
 <?php
@@ -103,8 +103,8 @@ $pagina = "Productos"
                             @foreach ($tags as $id => $tags)
                                 <div class="flex items-center">
                                     <input type="checkbox" id="tags" name="tags[]"
-                                        value="{{ $id }}" class="mr-2 rounded">
-                                    <label for="{{ $id }}">{{ $tags }}</label>
+                                        value="{{ $id }}" class="mr-2 rounded p-2">
+                                    <label class="overflow-auto" for="{{ $id }}">{{ $tags }}</label>
                                 </div>
                             @endforeach
                             @error('tags')
