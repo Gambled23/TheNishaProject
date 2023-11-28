@@ -65,7 +65,7 @@ If you want to use a Nix enviroment, you can check out the [flake](https://githu
    npm run build
    ```
 * Host anyhow you want
-* 
+
 ## Contact
 César - [ipog71@gmail.com](mailto:ipog71@gmail.com)
 Aranza - [example@gmail.com](mailto:example@gmail.com)
