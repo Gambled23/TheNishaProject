@@ -67,8 +67,8 @@ If you want to use a Nix enviroment (recommended in case you know how to use nix
 * Host anyhow you want
 
 ## Contact
-César - [ipog71@gmail.com](mailto:ipog71@gmail.com)
-Aranza - [example@gmail.com](mailto:example@gmail.com)
+* César - [ipog71@gmail.com](mailto:ipog71@gmail.com)
+* Aranza - [example@gmail.com](mailto:example@gmail.com)
 
 
 ## Acknowledgments
