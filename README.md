@@ -15,7 +15,7 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
-If you want to use a Nix enviroment, you can check out the [flake](https://github.com/Gambled23/TheNishaProject/blob/main/flake.nix).
+If you want to use a Nix enviroment (recommended in case you know how to use nix), you can check out the [flake](https://github.com/Gambled23/TheNishaProject/blob/main/flake.nix).
 * php and composer. [install instructions](https://www.php.net/downloads.php)
 * npm
   ```sh
