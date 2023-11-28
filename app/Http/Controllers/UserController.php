@@ -22,6 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin_delete');
+        $this->authorize('admin_only');
+        $this->authorize('user_only');
         $users = User::all();
         return view('User/indexUser', ['users' => $users]);
     }
@@ -74,6 +77,7 @@ class UserController extends Controller
         if($user->trashed()) {
             $this->authorize('soft_delete');
             $user->forceDelete();
+            session()->flash('success', 'El Usuario se elimino definitivamente');
             return redirect()->to('/admin/archive');
         }
 
@@ -95,6 +99,7 @@ class UserController extends Controller
 
         $user->restore();
 
+        session()->flash('success', 'El usuario se restauro con exito');
         return redirect()->to('/admin/archive');
     }
 }

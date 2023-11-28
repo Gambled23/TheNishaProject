@@ -1,8 +1,9 @@
 @extends ('layouts.main')
 @section('body')
-<div class="px-8">
 
-<h1 class="text-2xl font-medium text-gray-900 my-2" inline>The Nisha project!</h1>
+<x-home.upper-home />
+
+<div class="px-8">
 
 <div class="pb-8">
     @if($productos->count() >= 1)

@@ -28,7 +28,7 @@
                         {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
-                <a class="ml-32 text-sm text-gray-200 dark:text-gray-200 hover:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                <a class="ml-32 text-sm text-pink-600 dark:text-gray-200 hover:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
                         {{ __('Registrarse') }}
                 </a>
             </div>
@@ -36,11 +36,11 @@
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Recuerdame') }}</span>
+                    <span class="ml-2 text-sm text-pink-600 dark:text-gray-400">{{ __('Recuerdame') }}</span>
                 </label>
             </div>
             <div class="flex items-center justify-center">
-                <x-button class="ml-4">
+                <x-button class="ml-4 ">
                     {{ __('Iniciar sesión') }}
                 </x-button>
             </div>

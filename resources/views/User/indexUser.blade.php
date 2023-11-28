@@ -8,6 +8,8 @@ $user = Auth::user(); ?>
 <h1 class="text-2xl font-bold text-center mb-8 mx-4">
     Bienvenid@, <p class="inline-flex text-violet-700">{{ $user->name }} </p> al centro de cuentas de Nisha</h1>
 
+@can('user_only')
+
 <h2 class="text-xl font-bold mt-8 mx-4 text-violet-950">Historial de pedidos</h2>
 <div class="overflow-x-auto mx-4 mt-2">
     <table class="w-full text-sm text-left text-gray-500">
@@ -57,6 +59,7 @@ $user = Auth::user(); ?>
         </tbody>
     </table>
 </div>
+@endcan
 
 <h2 class="text-xl font-bold mt-8 mx-4 text-violet-950">Detalles de tu cuenta</h2>
 <div class="overflow-x-auto mt-2 mx-4">
@@ -92,11 +95,21 @@ $user = Auth::user(); ?>
         </form>
     </div>
 
-    <form action="/user/{{ $user->id }}" method="POST" class="flex justify-center">
-        @csrf
-        @method('DELETE')
-        <button class="bg-red-600 text-white rounded-lg px-6 py-2 hover:bg-red-700 transition ease-in-out delay-50" onclick="" type="submit">Eliminar cuenta</button>
-    </form>
+    <div class="sm:mr-12 mb-4 sm:mb-0">
+        @can('admin_delete')
+            <form action="/user/{{ $user->id }}" method="POST" class="flex justify-center">
+                @csrf
+                @method('DELETE')
+                <button class="bg-red-600 text-white rounded-lg px-6 py-2 hover:bg-red-700 transition ease-in-out delay-50" onclick="" type="submit">Eliminar cuenta</button>
+            </form>
+        @endcan
+    </div>
+
+    <div class="sm:mr-12 mb-4 sm:mb-0">
+        @can('admin_only')
+        <button class="bg-gray-500 text-white rounded-lg px-6 py-2 hover:bg-gray-600 transition ease-in-out delay-50" onclick=""><a href="/">Dashboard</a></button>
+        @endcan
+    </div>
 </div>
 
 @endsection
