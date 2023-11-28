@@ -6,6 +6,7 @@ Webpage made by [César](https://github.com/Gambled23) and [Aranza](https://gith
 * [Laravel](https://laravel.com/)
 * [Tailwind](https://tailwindcss.com/)
 * [Livewire](https://laravel-livewire.com/)
+* [Jetstream](https://jetstream.laravel.com/) 
 
 ### Host info
 The webpage is hosted on a Oracle Cloud VM using a simple nginx server.
@@ -46,6 +47,10 @@ If you want to use a Nix enviroment (recommended in case you know how to use nix
    php artisan key:generate
    ```
 6. Fill out your credentials in `.env`
+7. Run the migrations
+      ```sh
+   php artisan migrate
+   ```
 
 
 
@@ -68,7 +73,7 @@ If you want to use a Nix enviroment (recommended in case you know how to use nix
 
 ## Contact
 * César - [ipog71@gmail.com](mailto:ipog71@gmail.com)
-* Aranza - [example@gmail.com](mailto:example@gmail.com)
+* Aranza - [cybness7702@gmail.com](mailto:cybness7702@gmail.com)
 
 
 ## Acknowledgments
