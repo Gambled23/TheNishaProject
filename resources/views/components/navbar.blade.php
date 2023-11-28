@@ -12,11 +12,9 @@
                 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @can('user_only')
                     <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    @endcan
                     <x-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                         {{ __('Tienda') }}
                     </x-nav-link>
