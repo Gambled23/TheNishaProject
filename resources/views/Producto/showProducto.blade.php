@@ -14,7 +14,7 @@
         <p class="my-1">{{ $producto->descripcion }}</p>
         
         <div class="mt-3">
-
+        @if($producto->tags != NULL)
             <table>
                 <thead>
                     <tr>
@@ -29,7 +29,9 @@
                     <td>
                 </tbody>
             </table>
+        @endif
             <br>
+        @if($producto->variaciones != NULL)
             <table>
                 <thead>
                     <tr>
@@ -43,11 +45,9 @@
                         <br>
                         @endforeach
                     <td>
-                        <td>
-                        
-</td>                   <td>
                 </tbody>
             </table>
+        @endif
         </div>
 
         <br>

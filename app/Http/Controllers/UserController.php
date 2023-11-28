@@ -77,6 +77,7 @@ class UserController extends Controller
         if($user->trashed()) {
             $this->authorize('soft_delete');
             $user->forceDelete();
+            session()->flash('success', 'El Usuario se elimino definitivamente');
             return redirect()->to('/admin/archive');
         }
 
@@ -98,6 +99,7 @@ class UserController extends Controller
 
         $user->restore();
 
+        session()->flash('success', 'El usuario se restauro con exito');
         return redirect()->to('/admin/archive');
     }
 }
