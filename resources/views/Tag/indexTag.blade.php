@@ -12,9 +12,11 @@ $pagina = "Tags"
 
 <div class="flex flex-col">
     <h1 class="text-center mb-10 text-2xl font-mono"><br>Tags</h1>
-    <div class="p-4 mb-3">
-        <button type="button" class="text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><a href="{{ route('admin.tag.create') }}" class="px-4 py-2 mb-4">Añadir Tag</a></button>
-    </div>
+    @can('create', \App\Models\Tag::class)
+        <div class="p-4 mb-3">
+            <button type="button" class="text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><a href="{{ route('admin.tag.create') }}" class="px-4 py-2 mb-4">Añadir Tag</a></button>
+        </div>
+    @endcan
     @if ($message = Session::get('success'))
         <div class="p-4 mb-3 bg-blue-400 rounded">
             <p class="text-white">{{ $message }}</p>
