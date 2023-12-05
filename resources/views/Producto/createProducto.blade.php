@@ -104,7 +104,7 @@ $pagina = "Productos"
                                 <div class="flex items-center">
                                     <input type="checkbox" id="tags" name="tags[]"
                                         value="{{ $id }}" class="mr-2 rounded p-2">
-                                    <label class="overflow-auto" for="{{ $id }}">{{ $tags }}</label>
+                                    <label for="{{ $id }}">{{ $tags }}</label>
                                 </div>
                             @endforeach
                             @error('tags')
