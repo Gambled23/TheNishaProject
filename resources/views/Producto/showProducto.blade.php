@@ -23,11 +23,17 @@
                 </thead>
                 <tbody>
                     <td>
-                        @foreach ($producto->tags as $tags)
-                        <a href="{{ route('productos.categoria', $tags->id) }}">
-                            <button class="text-white bg-purple-700 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">{{$tags->nombre}}</button>
-                        </a>
-                        @endforeach
+                        @if (isset($tag))
+                            @foreach ($producto->tags as $tags)
+                            <a href="{{ route('productos.categoria', $tags->id) }}">
+                                <button class="text-white bg-purple-700 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">{{$tags->nombre}}</button>
+                            </a>
+                            @endforeach
+                        @else <!--No hay tags-->
+                            <p class="text-gray-500 text-sm">Este producto no tiene tags :/</p>
+                        @endif
+
+                        
                     <td>
                 </tbody>
             </table>
