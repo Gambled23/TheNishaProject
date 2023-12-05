@@ -32,7 +32,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @for ($i = 0; $i < $producto->imagenesTotales; $i++)
             <label class="relative cursor-pointer">
-                <img id="image{{ $i }}" src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' alt="{{ $producto->nombre }}" class="rounded w-1/4">
+                <img id="image{{ $i }}" src='{{ URL::to("/images/{$producto->nombre}_{$i}.jpg") }}' alt="{{ $producto->nombre }}" class="rounded w-3/4">
                 <input type="checkbox" name="images[]" value="{{ $i }}" class="absolute top-0 right-0 opacity-0" onchange="toggleDarken('image{{ $i }}')">
             </label>
         @endfor
