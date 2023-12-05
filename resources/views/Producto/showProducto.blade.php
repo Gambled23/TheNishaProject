@@ -4,9 +4,7 @@
 
 <div class="flex flex-col md:flex-row"> 
     <div class="flex flex-col md:flex-row md:items-stretch">   
-        <div class="mx-4 md:w-1/2 h-full pb-16"> 
-            <x-photo-carrousel :producto="$producto" />
-        </div>
+        <x-photo-carrousel :producto="$producto" />
         
         <div class="mx-4 my-16 py-8 px-4 md:w-1/2 h-2/3 bg-violet-50 rounded-lg shadow-md overflow-auto"> 
         <h1 class=" text-4xl font-bold">{{ strtoupper($producto->nombre) }}</h1>
