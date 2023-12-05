@@ -99,7 +99,7 @@ $pagina = "Productos"
                     <br>
                     <div class="mb-4">
                         <label class="text-gray-600">Tags</label>
-                        <div class="grid grid-cols-3 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             @foreach ($tags as $id => $tags)
                                 <div class="flex items-center">
                                     <input type="checkbox" id="tags" name="tags[]"
