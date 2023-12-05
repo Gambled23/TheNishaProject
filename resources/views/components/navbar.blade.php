@@ -55,7 +55,7 @@
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <div x-data="{ open: false }" class="sm:hidden">
+    <div x-data="{ open: false }" class="md:hidden">
         <!-- Hamburger button -->
         <button @click="open = !open" class="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
             <svg :class="{'hidden': open, 'block': !open }" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
