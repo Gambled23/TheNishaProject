@@ -110,7 +110,7 @@ class PaymentController extends Controller
             ];
             Mail::to($email)->send(new confirmacionOrden($data));
 
-            return redirect()->route('account');
+            return redirect()->route('user.account');
         } else {
             return redirect()
                 ->route('home')
